@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registros del {{ fecha }} - Protocolo de Medición</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- DataTables CSS -->
+    <link
+      href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <style>
+      .container {
+        margin-top: 2rem;
+      }
+      .table th {
+        background-color: #f8f9fa;
+      }
+      .btn-volver {
+        margin-bottom: 1rem;
+      }
+      .toast-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1050;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Contenedor para notificaciones toast -->
+    <div class="toast-container"></div>
+
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h1>Registros del {{ fecha.strftime('%d/%m/%Y') }}</h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/consulta-fecha">Consulta por Fecha</a>
+              </li>
+              <li class="breadcrumb-item active">
+                Registros del {{ fecha.strftime('%d/%m/%Y') }}
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div>
+          <a href="/" class="btn btn-primary me-2">
+            <i class="bi bi-plus-circle"></i> Nuevo Registro
+          </a>
+          <a href="/registros" class="btn btn-secondary me-2">
+            <i class="bi bi-list-ul"></i> Ver Todos
+          </a>
+          <a href="/exportar-excel" class="btn btn-success">
+            <i class="bi bi-file-excel"></i> Exportar a Excel
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <table id="tablaRegistros" class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Hora</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Género</th>
+                <th>Peso (kg)</th>
+                <th>Altura (cm)</th>
+                <th>Ejercicio</th>
+                <th>Riesgo</th>
+                <th>Carga (kg)</th>
+                <th>Duración (min)</th>
+                <th>Repeticiones</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for registro in registros %}
+              <tr>
+                <td>{{ registro.id }}</td>
+                <td>{{ registro.fecha_hora.strftime('%H:%M') }}</td>
+                <td>{{ registro.nombre_completo }}</td>
+                <td>{{ registro.edad }}</td>
+                <td>{{ registro.genero }}</td>
+                <td>{{ "%.2f"|format(registro.peso_corporal) }}</td>
+                <td>{{ "%.2f"|format(registro.altura) }}</td>
+                <td>{{ registro.tipo_ejercicio }}</td>
+                <td>{{ registro.nivel_riesgo }}</td>
+                <td>{{ "%.2f"|format(registro.peso_carga) }}</td>
+                <td>{{ registro.duracion_minutos }}</td>
+                <td>{{ registro.num_repeticiones }}</td>
+                <td>
+                  <button
+                    class="btn btn-danger btn-sm"
+                    onclick="confirmarEliminacion({{ registro.id }})"
+                  >
+                    <i class="bi bi-trash"></i> Eliminar
+                  </button>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {% if not registros %}
+      <div class="alert alert-info mt-4">
+        <i class="bi bi-info-circle"></i> No hay registros para esta fecha.
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Modal de confirmación -->
+    <div class="modal fade" id="modalConfirmacion" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmar Eliminación</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            ¿Está seguro que desea eliminar este registro?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              id="btnConfirmarEliminar"
+            >
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+      let idAEliminar = null;
+      const modalConfirmacion = new bootstrap.Modal(
+        document.getElementById("modalConfirmacion")
+      );
+
+      function mostrarToast(mensaje, tipo = "success") {
+        const toastContainer = document.querySelector(".toast-container");
+        const toast = document.createElement("div");
+        toast.className = `toast align-items-center text-white bg-${tipo} border-0`;
+        toast.setAttribute("role", "alert");
+        toast.setAttribute("aria-live", "assertive");
+        toast.setAttribute("aria-atomic", "true");
+
+        toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">
+                        ${mensaje}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            `;
+
+        toastContainer.appendChild(toast);
+        const bsToast = new bootstrap.Toast(toast);
+        bsToast.show();
+
+        toast.addEventListener("hidden.bs.toast", () => {
+          toast.remove();
+        });
+      }
+
+      function confirmarEliminacion(id) {
+        idAEliminar = id;
+        modalConfirmacion.show();
+      }
+
+      document
+        .getElementById("btnConfirmarEliminar")
+        .addEventListener("click", function () {
+          if (idAEliminar) {
+            eliminarRegistro(idAEliminar);
+          }
+        });
+
+      function eliminarRegistro(id) {
+        fetch(`/eliminar/${id}`, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            modalConfirmacion.hide();
+            if (data.success) {
+              mostrarToast(data.message, "success");
+              // Recargar la página después de eliminar
+              setTimeout(() => {
+                window.location.reload();
+              }, 1000);
+            } else {
+              mostrarToast(data.message, "danger");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            mostrarToast("Error al eliminar el registro", "danger");
+          });
+      }
+
+      $(document).ready(function () {
+        $("#tablaRegistros").DataTable({
+          language: {
+            url: "//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json",
+          },
+          order: [[1, "desc"]], // Ordenar por hora descendente por defecto
+          pageLength: 25,
+          responsive: true,
+        });
+      });
+    </script>
+  </body>
+</html>

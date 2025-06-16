@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro Protocolo Medición</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+      }
+      .container {
+        max-width: 1200px;
+      }
+      .form-section {
+        background-color: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+      }
+      .form-section:hover {
+        transform: translateY(-2px);
+      }
+      .form-section h2 {
+        color: #2c3e50;
+        margin-bottom: 25px;
+        font-weight: 600;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+      }
+      .form-label {
+        font-weight: 500;
+        color: #34495e;
+      }
+      .form-control {
+        border-radius: 8px;
+        border: 1px solid #bdc3c7;
+        padding: 10px;
+        transition: all 0.3s ease;
+      }
+      .form-control:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+      }
+      .form-check-input:checked {
+        background-color: #3498db;
+        border-color: #3498db;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        border: none;
+        padding: 12px 30px;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+      }
+      h1 {
+        color: #2c3e50;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+      .form-check {
+        padding: 10px;
+        border-radius: 8px;
+        background-color: #f8f9fa;
+        margin-bottom: 10px;
+        transition: all 0.3s ease;
+      }
+      .form-check:hover {
+        background-color: #e9ecef;
+      }
+      .form-check-label {
+        color: #2c3e50;
+        font-weight: 500;
+      }
+      .row {
+        margin-bottom: 15px;
+      }
+      .mb-3 {
+        margin-bottom: 1.5rem !important;
+      }
+      .invalid-feedback {
+        color: #e74c3c;
+        font-weight: 500;
+      }
+      .was-validated .form-control:invalid {
+        border-color: #e74c3c;
+      }
+      .was-validated .form-control:valid {
+        border-color: #2ecc71;
+      }
+      .toast-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1050;
+      }
+      .alert-container {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1050;
+        min-width: 300px;
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <!-- Contenedor para mensajes de alerta -->
+    <div class="alert-container"></div>
+
+    <!-- Contenedor para notificaciones toast -->
+    <div class="toast-container"></div>
+
+    <div class="container py-5">
+      <h1 class="text-center mb-4">Registro Protocolo Medición</h1>
+      <form
+        action="/guardar"
+        method="POST"
+        class="needs-validation"
+        novalidate
+        id="protocoloForm"
+      >
+        <!-- Fecha y Hora -->
+        <div class="form-section">
+          <h2>Fecha y Hora de la Sesión</h2>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Fecha y Hora</label>
+              <input
+                type="datetime-local"
+                class="form-control"
+                id="fecha_hora"
+                name="fecha_hora"
+                required
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 1. Datos físicos básicos -->
+        <div class="form-section">
+          <h2>1. Datos Físicos Básicos</h2>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Nombre Completo</label>
+              <input
+                name="nombre_completo"
+                type="text"
+                class="form-control"
+                placeholder="Ingrese el nombre completo"
+                required
+              />
+            </div>
+            <div class="col-md-3 mb-3">
+              <label class="form-label">Edad</label>
+              <input
+                name="edad"
+                type="number"
+                class="form-control"
+                min="1"
+                max="120"
+                placeholder="1-120 años"
+                required
+              />
+              <div class="invalid-feedback">
+                La edad debe estar entre 1 y 120 años
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label class="form-label">Género</label>
+              <select name="genero" class="form-select" required>
+                <option value="">Seleccione género...</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Peso Corporal (kg)</label>
+              <input
+                name="peso_corporal"
+                type="number"
+                step="0.01"
+                class="form-control"
+                min="0.01"
+                placeholder="Ej: 70.5"
+                required
+              />
+              <div class="invalid-feedback">El peso debe ser mayor a 0</div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Altura (cm)</label>
+              <input
+                name="altura"
+                type="number"
+                step="0.01"
+                class="form-control"
+                min="0.01"
+                placeholder="Ej: 170.5"
+                required
+              />
+              <div class="invalid-feedback">La altura debe ser mayor a 0</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Longitud Brazo (cm)</label>
+              <input
+                name="longitud_brazo"
+                type="number"
+                step="0.01"
+                class="form-control"
+                placeholder="Opcional"
+              />
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Longitud Pierna (cm)</label>
+              <input
+                name="longitud_pierna"
+                type="number"
+                step="0.01"
+                class="form-control"
+                placeholder="Opcional"
+              />
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Longitud Torso (cm)</label>
+              <input
+                name="longitud_torso"
+                type="number"
+                step="0.01"
+                class="form-control"
+                placeholder="Opcional"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Historial médico -->
+        <div class="form-section">
+          <h2>2. Historial Médico y Condición Física</h2>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="form-check">
+                <input
+                  name="antecedentes_lesiones"
+                  type="checkbox"
+                  class="form-check-input"
+                  value="1"
+                />
+                <label class="form-check-label"
+                  >Antecedentes de lesiones musculoesqueléticas</label
+                >
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-check">
+                <input
+                  name="limitaciones_movilidad"
+                  type="checkbox"
+                  class="form-check-input"
+                  value="1"
+                />
+                <label class="form-check-label"
+                  >Limitaciones de movilidad o problemas de salud</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="form-check">
+                <input
+                  name="experiencia_levantamiento"
+                  type="checkbox"
+                  class="form-check-input"
+                  value="1"
+                />
+                <label class="form-check-label"
+                  >Experiencia en levantamiento de cargas</label
+                >
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-check">
+                <input
+                  name="sin_contraindicaciones"
+                  type="checkbox"
+                  class="form-check-input"
+                  value="1"
+                  checked
+                />
+                <label class="form-check-label"
+                  >Sin contraindicaciones para la actividad</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Calibración -->
+        <div class="form-section">
+          <h2>3. Calibración del Traje</h2>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <div class="form-check">
+                <input
+                  name="ajuste_traje"
+                  type="checkbox"
+                  class="form-check-input"
+                  value="1"
+                  checked
+                />
+                <label class="form-check-label"
+                  >Ajuste correcto del traje</label
+                >
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="form-check">
+                <input
+                  name="calibracion_sincronizada"
+                  type="checkbox"
+                  class="form-check-input"
+                  value="1"
+                  checked
+                />
+                <label class="form-check-label"
+                  >Calibración inicial sincronizada</label
+                >
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="form-check">
+                <input
+                  name="sensores_posicion"
+                  type="checkbox"
+                  class="form-check-input"
+                  value="1"
+                  checked
+                />
+                <label class="form-check-label"
+                  >Sensores en posición correcta</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Parámetros del ejercicio -->
+        <div class="form-section">
+          <h2>4. Parámetros del Ejercicio</h2>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Tipo de Ejercicio</label>
+              <select name="tipo_ejercicio" class="form-select" required>
+                <option value="">Seleccione tipo de ejercicio...</option>
+                <option value="Levantamiento de cajas desde el suelo">
+                  Levantamiento de cajas desde el suelo
+                </option>
+                <option value="Transporte manual de cargas">
+                  Transporte manual de cargas
+                </option>
+                <option value="Giro y torsión con carga">
+                  Giro y torsión con carga
+                </option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Nivel de Riesgo</label>
+              <select name="nivel_riesgo" class="form-select" required>
+                <option value="">Seleccione nivel de riesgo...</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Medio">Medio</option>
+                <option value="Medio-Alto" selected>Medio-Alto</option>
+                <option value="Alto">Alto</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Peso de la Carga (kg)</label>
+              <input
+                name="peso_carga"
+                type="number"
+                step="0.01"
+                class="form-control"
+                min="0.01"
+                placeholder="Ej: 25.5"
+                required
+              />
+              <div class="invalid-feedback">
+                El peso de la carga debe ser mayor a 0
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Forma del Objeto</label>
+              <select name="forma_objeto" class="form-select" required>
+                <option value="">Seleccione forma...</option>
+                <option value="Redondo">Redondo</option>
+                <option value="Cuadrado">Cuadrado</option>
+                <option value="Rectangular">Rectangular</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Velocidad del Movimiento</label>
+              <select name="velocidad_movimiento" class="form-select" required>
+                <option value="">Seleccione velocidad...</option>
+                <option value="Lento">Lento</option>
+                <option value="Moderado">Moderado</option>
+                <option value="Rapido">Rápido</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Contexto del ejercicio -->
+        <div class="form-section">
+          <h2>5. Contexto del Ejercicio</h2>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Tipo de Superficie</label>
+              <select name="tipo_superficie" class="form-select" required>
+                <option value="">Seleccione tipo de superficie...</option>
+                <optgroup label="Oficinas y Hogares">
+                  <option value="Alfombra">Alfombra</option>
+                  <option value="Baldosa">
+                    Baldosa (Cerámica, Porcelana, etc.)
+                  </option>
+                  <option value="Madera">Madera</option>
+                  <option value="Cemento">Cemento Pulido/Microcemento</option>
+                </optgroup>
+                <optgroup label="Entornos de Construcción y Exteriores">
+                  <option value="Concreto">Concreto/Hormigón</option>
+                  <option value="Asfalto">Asfalto</option>
+                  <option value="Grava">Grava/Ripio</option>
+                </optgroup>
+                <optgroup label="Almacenes e Instalaciones Industriales">
+                  <option value="Concreto Alta Resistencia">
+                    Concreto/Hormigón de Alta Resistencia
+                  </option>
+                  <option value="Epoxico">Pisos Epóxicos/Resinas</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label class="form-label">Duración (minutos)</label>
+              <input
+                name="duracion_minutos"
+                type="number"
+                class="form-control"
+                min="1"
+                placeholder="Ej: 30"
+                required
+              />
+              <div class="invalid-feedback">La duración debe ser mayor a 0</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label class="form-label">Número de Repeticiones</label>
+              <input
+                name="num_repeticiones"
+                type="number"
+                class="form-control"
+                min="1"
+                placeholder="Ej: 10"
+                required
+              />
+              <div class="invalid-feedback">
+                El número de repeticiones debe ser mayor a 0
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <div class="form-check">
+                <input
+                  name="pausas"
+                  type="checkbox"
+                  class="form-check-input"
+                  value="1"
+                />
+                <label class="form-check-label"
+                  >Incluir pausas o descansos</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="d-flex justify-content-between align-items-center mt-4 mb-4"
+        >
+          <a href="/registros" class="btn btn-outline-primary">
+            <i class="bi bi-list-ul"></i> Ver Registros
+          </a>
+          <button type="submit" class="btn btn-primary">
+            <i class="bi bi-save"></i> Guardar Protocolo
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Establecer fecha y hora actual por defecto
+      function establecerFechaHoraActual() {
+        const now = new Date();
+        // Ajustar al formato requerido por el input datetime-local (YYYY-MM-DDThh:mm)
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0");
+        const day = String(now.getDate()).padStart(2, "0");
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+
+        const fechaHoraActual = `${year}-${month}-${day}T${hours}:${minutes}`;
+        document.getElementById("fecha_hora").value = fechaHoraActual;
+      }
+
+      // Llamar a la función cuando se carga la página
+      document.addEventListener("DOMContentLoaded", establecerFechaHoraActual);
+
+      // Función para mostrar alertas
+      function mostrarAlerta(mensaje, tipo = "success") {
+        const alertContainer = document.querySelector(".alert-container");
+        const alert = document.createElement("div");
+        alert.className = `alert alert-${tipo} alert-dismissible fade show`;
+        alert.innerHTML = `
+          ${mensaje}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        `;
+        alertContainer.appendChild(alert);
+
+        // Auto cerrar después de 5 segundos
+        setTimeout(() => {
+          alert.remove();
+        }, 5000);
+      }
+
+      // Función para mostrar toast
+      function mostrarToast(mensaje, tipo = "success") {
+        const toastContainer = document.querySelector(".toast-container");
+        const toast = document.createElement("div");
+        toast.className = `toast align-items-center text-white bg-${tipo} border-0`;
+        toast.setAttribute("role", "alert");
+        toast.setAttribute("aria-live", "assertive");
+        toast.setAttribute("aria-atomic", "true");
+
+        toast.innerHTML = `
+          <div class="d-flex">
+            <div class="toast-body">
+              ${mensaje}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+        `;
+
+        toastContainer.appendChild(toast);
+        const bsToast = new bootstrap.Toast(toast);
+        bsToast.show();
+
+        // Remover el toast después de que se oculte
+        toast.addEventListener("hidden.bs.toast", () => {
+          toast.remove();
+        });
+      }
+
+      // Función para validar campos requeridos
+      function validarCamposRequeridos() {
+        const camposRequeridos = document.querySelectorAll("[required]");
+        let camposFaltantes = [];
+
+        camposRequeridos.forEach((campo) => {
+          if (!campo.value.trim()) {
+            camposFaltantes.push(campo.previousElementSibling.textContent);
+            campo.classList.add("is-invalid");
+          } else {
+            campo.classList.remove("is-invalid");
+          }
+        });
+
+        if (camposFaltantes.length > 0) {
+          mostrarAlerta(
+            `Por favor complete los siguientes campos: ${camposFaltantes.join(
+              ", "
+            )}`,
+            "warning"
+          );
+          return false;
+        }
+        return true;
+      }
+
+      document
+        .getElementById("protocoloForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          if (!this.checkValidity() || !validarCamposRequeridos()) {
+            e.stopPropagation();
+            this.classList.add("was-validated");
+            return;
+          }
+
+          const formData = new FormData(this);
+
+          // Mostrar indicador de carga
+          mostrarToast("Guardando datos...", "info");
+
+          fetch("/guardar", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                mostrarToast(data.message, "success");
+                setTimeout(() => {
+                  window.location.href = "/registros";
+                }, 1500);
+              } else {
+                mostrarAlerta(data.message, "danger");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              mostrarAlerta("Error al guardar los datos", "danger");
+            });
+        });
+
+      // Validación en tiempo real
+      document.querySelectorAll("input, select").forEach((campo) => {
+        campo.addEventListener("input", function () {
+          if (this.hasAttribute("required")) {
+            if (!this.value.trim()) {
+              this.classList.add("is-invalid");
+            } else {
+              this.classList.remove("is-invalid");
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
