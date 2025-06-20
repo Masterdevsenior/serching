@@ -1,0 +1,687 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Pruebas - Protocolo de Medición</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .summary {
+            padding: 30px;
+            background: #f8f9fa;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .summary-card h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+        .summary-card .number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .success { color: #27ae60; }
+        .failure { color: #e74c3c; }
+        .error { color: #f39c12; }
+        .total { color: #3498db; }
+        .suite-results {
+            padding: 30px;
+        }
+        .suite-card {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .suite-header {
+            background: #ecf0f1;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .suite-header h3 {
+            margin: 0;
+            color: #2c3e50;
+        }
+        .suite-stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        .stat {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        .test-results {
+            padding: 20px;
+        }
+        .test-item {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border-left: 4px solid;
+        }
+        .test-pass { background: #d5f4e6; border-left-color: #27ae60; }
+        .test-fail { background: #fadbd8; border-left-color: #e74c3c; }
+        .test-error { background: #fdeaa7; border-left-color: #f39c12; }
+        .test-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .test-details {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .error-message {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            white-space: pre-wrap;
+        }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Reporte de Pruebas</h1>
+            <p>Aplicación de Protocolo de Medición</p>
+            <p>Generado el 20/06/2025 a las 13:54:45</p>
+        </div>
+        
+        <div class="summary">
+            <h2>Resumen General</h2>
+            <div class="summary-grid">
+
+                <div class="summary-card">
+                    <h3>Total Pruebas</h3>
+                    <div class="number total">39</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Exitosas</h3>
+                    <div class="number success">26</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Fallidas</h3>
+                    <div class="number failure">10</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Errores</h3>
+                    <div class="number error">3</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Tasa de Éxito</h3>
+                    <div class="number success">66.7%</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Tiempo Total</h3>
+                    <div class="number total">0.42s</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="suite-results">
+            <h2>Resultados por Suite</h2>
+
+            <div class="suite-card">
+                <div class="suite-header">
+                    <h3>Modelos de Base de Datos</h3>
+                    <div class="suite-stats">
+                        <div class="stat success">[OK] 12 Exitosas</div>
+                        <div class="stat failure">[ERROR] 0 Fallidas</div>
+                        <div class="stat error">[WARNING] 3 Errores</div>
+                        <div class="stat total">[TIME] 0.03s</div>
+                    </div>
+                </div>
+                <div class="test-results">
+
+                    <div class="test-item test-error">
+                        <div class="test-name">[WARNING] test_get_db_connection_failure (tests.test_models.TestDatabaseConnection.test_get_db_connection_failure)</div>
+                        <div class="test-details">
+                            Estado: ERROR | Duración: 0.00s
+                        </div>
+
+                        <div class="error-message">Traceback (most recent call last):
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1395, in patched
+    return func(*newargs, **newkeywargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\tests\test_models.py", line 44, in test_get_db_connection_failure
+    result = get_db_connection()
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\models\db.py", line 25, in get_db_connection
+    conn = psycopg2.connect(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1198, in _execute_mock_call
+    raise effect
+Exception: Error de conexión
+</div>
+
+                    </div>
+
+                    <div class="test-item test-error">
+                        <div class="test-name">[WARNING] test_crear_tabla_failure (tests.test_models.TestTableCreation.test_crear_tabla_failure)</div>
+                        <div class="test-details">
+                            Estado: ERROR | Duración: 0.00s
+                        </div>
+
+                        <div class="error-message">Traceback (most recent call last):
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1395, in patched
+    return func(*newargs, **newkeywargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\tests\test_models.py", line 70, in test_crear_tabla_failure
+    result = crear_tabla()
+             ^^^^^^^^^^^^^
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\models\db.py", line 64, in crear_tabla
+    conn = psycopg2.connect(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1198, in _execute_mock_call
+    raise effect
+Exception: Error de base de datos
+</div>
+
+                    </div>
+
+                    <div class="test-item test-error">
+                        <div class="test-name">[WARNING] test_crear_tabla_success (tests.test_models.TestTableCreation.test_crear_tabla_success)</div>
+                        <div class="test-details">
+                            Estado: ERROR | Duración: 0.00s
+                        </div>
+
+                        <div class="error-message">Traceback (most recent call last):
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1395, in patched
+    return func(*newargs, **newkeywargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\tests\test_models.py", line 60, in test_crear_tabla_success
+    result = crear_tabla()
+             ^^^^^^^^^^^^^
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\models\db.py", line 104, in crear_tabla
+    tabla_existe = cursor.fetchone()[0]
+                   ~~~~~~~~~~~~~~~~~^^^
+TypeError: 'bool' object is not subscriptable
+</div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_0</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_1</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_2</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_3</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_4</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_5</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_6</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_7</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_8</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_9</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_10</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_11</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="suite-card">
+                <div class="suite-header">
+                    <h3>Aplicación Flask</h3>
+                    <div class="suite-stats">
+                        <div class="stat success">[OK] 11 Exitosas</div>
+                        <div class="stat failure">[ERROR] 6 Fallidas</div>
+                        <div class="stat error">[WARNING] 0 Errores</div>
+                        <div class="stat total">[TIME] 0.18s</div>
+                    </div>
+                </div>
+                <div class="test-results">
+
+                    <div class="test-item test-fail">
+                        <div class="test-name">[ERROR] test_dashboard_route (tests.test_app.TestAppRoutes.test_dashboard_route)</div>
+                        <div class="test-details">
+                            Estado: FAIL | Duración: 0.00s
+                        </div>
+
+                        <div class="error-message">Traceback (most recent call last):
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\tests\test_app.py", line 37, in test_dashboard_route
+    self.assertIn(b'Dashboard de Protocolo de Medicion', response.data)
+AssertionError: b'Dashboard de Protocolo de Medicion' not found in b'<!DOCTYPE html>\n<html lang="es">\n  <head>\n    <meta charset="UTF-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <title>Dashboard - Protocolo Medici\xc3\xb3n</title>\n\n    <!-- Bootstrap CSS -->\n    <link\n      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"\n      rel="stylesheet"\n    />\n    <!-- Chart.js -->\n    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>\n    <!-- Font Awesome -->\n    <link\n      rel="stylesheet"\n      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"\n    />\n\n    <style>\n      :root {\n        --primary-color: #3498db;\n        --secondary-color: #2c3e50;\n        --success-color: #27ae60;\n        --warning-color: #f39c12;\n        --danger-color: #e74c3c;\n        --light-bg: #f8f9fa;\n        --dark-bg: #2c3e50;\n      }\n\n      body {\n        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n        min-height: 100vh;\n        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;\n      }\n\n      .dashboard-container {\n        padding: 20px 0;\n      }\n\n      .card {\n        border: none;\n        border-radius: 15px;\n        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);\n        transition: transform 0.3s ease, box-shadow 0.3s ease;\n        background: rgba(255, 255, 255, 0.95);\n        backdrop-filter: blur(10px);\n      }\n\n      .card:hover {\n        transform: translateY(-5px);\n        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);\n      }\n\n      .card-header {\n        background: linear-gradient(135deg, var(--primary-color), #2980b9);\n        color: white;\n        border-radius: 15px 15px 0 0 !important;\n        border: none;\n        padding: 20px;\n      }\n\n      .stats-card {\n        text-align: center;\n        padding: 30px 20px;\n      }\n\n      .stats-number {\n        font-size: 2.5rem;\n        font-weight: bold;\n        color: var(--secondary-color);\n        margin-bottom: 10px;\n      }\n\n      .stats-label {\n        font-size: 1.1rem;\n        color: #666;\n        font-weight: 500;\n      }\n\n      .chart-container {\n        position: relative;\n        height: 300px;\n        margin: 20px 0;\n      }\n\n      .recent-table {\n        background: white;\n        border-radius: 15px;\n        overflow: hidden;\n      }\n\n      .recent-table .table {\n        margin-bottom: 0;\n      }\n\n      .recent-table th {\n        background: var(--primary-color);\n        color: white;\n        border: none;\n        font-weight: 600;\n      }\n\n      .recent-table td {\n        border: none;\n        border-bottom: 1px solid #eee;\n        vertical-align: middle;\n      }\n\n      .badge-riesgo {\n        padding: 5px 10px;\n        border-radius: 20px;\n        font-size: 0.8rem;\n        font-weight: 600;\n      }\n\n      .badge-bajo {\n        background-color: var(--success-color);\n        color: white;\n      }\n      .badge-medio {\n        background-color: var(--warning-color);\n        color: white;\n      }\n      .badge-alto {\n        background-color: var(--danger-color);\n        color: white;\n      }\n\n      .navbar {\n        background: rgba(255, 255, 255, 0.95) !important;\n        backdrop-filter: blur(10px);\n        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);\n      }\n\n      .btn-dashboard {\n        background: linear-gradient(135deg, var(--primary-color), #2980b9);\n        border: none;\n        color: white;\n        padding: 10px 20px;\n        border-radius: 25px;\n        font-weight: 600;\n        transition: all 0.3s ease;\n      }\n\n      .btn-dashboard:hover {\n        transform: translateY(-2px);\n        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);\n        color: white;\n      }\n\n      .loading {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        height: 200px;\n      }\n\n      .spinner {\n        width: 40px;\n        height: 40px;\n        border: 4px solid #f3f3f3;\n        border-top: 4px solid var(--primary-color);\n        border-radius: 50%;\n        animation: spin 1s linear infinite;\n      }\n\n      @keyframes spin {\n        0% {\n          transform: rotate(0deg);\n        }\n        100% {\n          transform: rotate(360deg);\n        }\n      }\n\n      .empty-state {\n        text-align: center;\n        padding: 40px;\n        color: #666;\n      }\n\n      .empty-state h5 {\n        margin-bottom: 20px;\n        color: #333;\n      }\n\n      @media (max-width: 768px) {\n        .stats-number {\n          font-size: 2rem;\n        }\n\n        .chart-container {\n          height: 250px;\n        }\n      }\n    </style>\n  </head>\n  <body>\n    <!-- Navbar -->\n    <nav class="navbar navbar-expand-lg navbar-light">\n      <div class="container">\n        <a class="navbar-brand fw-bold" href="/">\n          Protocolo Medici\xc3\xb3n Dashboard\n        </a>\n        <div class="navbar-nav ms-auto">\n          <a class="nav-link" href="/">Nuevo Registro</a>\n          <a class="nav-link" href="/registros">Ver Registros</a>\n          <a class="nav-link active" href="/dashboard">Dashboard</a>\n        </div>\n      </div>\n    </nav>\n\n    <div class="container dashboard-container">\n      <!-- T\xc3\xadtulo del Dashboard -->\n      <div class="row mb-4">\n        <div class="col-12">\n          <h1 class="text-white text-center mb-4">\n            Dashboard de Protocolo de Medici\xc3\xb3n\n          </h1>\n        </div>\n      </div>\n\n      <!-- Tarjetas de Estad\xc3\xadsticas -->\n      <div class="row mb-4" id="statsCards">\n        <div class="col-md-3 mb-3">\n          <div class="card stats-card">\n            <div class="stats-number" id="totalRegistros">-</div>\n            <div class="stats-label">Total Registros</div>\n          </div>\n        </div>\n        <div class="col-md-3 mb-3">\n          <div class="card stats-card">\n            <div class="stats-number" id="registros7Dias">-</div>\n            <div class="stats-label">\xc3\x9altimos 7 d\xc3\xadas</div>\n          </div>\n        </div>\n        <div class="col-md-3 mb-3">\n          <div class="card stats-card">\n            <div class="stats-number" id="promedioEdad">-</div>\n            <div class="stats-label">Edad Promedio</div>\n          </div>\n        </div>\n        <div class="col-md-3 mb-3">\n          <div class="card stats-card">\n            <div class="stats-number" id="promedioPeso">-</div>\n            <div class="stats-label">Peso Promedio (kg)</div>\n          </div>\n        </div>\n      </div>\n\n      <!-- Gr\xc3\xa1ficos -->\n      <div class="row mb-4">\n        <!-- Gr\xc3\xa1fico de Registros por Fecha -->\n        <div class="col-lg-8 mb-3">\n          <div class="card">\n            <div class="card-header">\n              <h5 class="mb-0">Registros por Fecha (\xc3\x9altimos 30 d\xc3\xadas)</h5>\n            </div>\n            <div class="card-body">\n              <div class="chart-container">\n                <canvas id="registrosChart"></canvas>\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <!-- Gr\xc3\xa1fico de Distribuci\xc3\xb3n por G\xc3\xa9nero -->\n        <div class="col-lg-4 mb-3">\n          <div class="card">\n            <div class="card-header">\n              <h5 class="mb-0">Distribuci\xc3\xb3n por G\xc3\xa9nero</h5>\n            </div>\n            <div class="card-body">\n              <div class="chart-container">\n                <canvas id="generoChart"></canvas>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <div class="row mb-4">\n        <!-- Gr\xc3\xa1fico de Ejercicios -->\n        <div class="col-lg-6 mb-3">\n          <div class="card">\n            <div class="card-header">\n              <h5 class="mb-0">Tipos de Ejercicio</h5>\n            </div>\n            <div class="card-body">\n              <div class="chart-container">\n                <canvas id="ejerciciosChart"></canvas>\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <!-- Gr\xc3\xa1fico de Nivel de Riesgo -->\n        <div class="col-lg-6 mb-3">\n          <div class="card">\n            <div class="card-header">\n              <h5 class="mb-0">Nivel de Riesgo</h5>\n            </div>\n            <div class="card-body">\n              <div class="chart-container">\n                <canvas id="riesgoChart"></canvas>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <!-- Registros Recientes -->\n      <div class="row">\n        <div class="col-12">\n          <div class="card">\n            <div class="card-header">\n              <h5 class="mb-0">Registros Recientes</h5>\n            </div>\n            <div class="card-body p-0">\n              <div class="recent-table">\n                <div class="loading" id="recentLoading">\n                  <div class="spinner"></div>\n                </div>\n                <table\n                  class="table table-hover"\n                  id="recentTable"\n                  style="display: none"\n                >\n                  <thead>\n                    <tr>\n                      <th>ID</th>\n                      <th>Fecha</th>\n                      <th>Nombre</th>\n                      <th>Edad</th>\n                      <th>G\xc3\xa9nero</th>\n                      <th>Ejercicio</th>\n                      <th>Riesgo</th>\n                    </tr>\n                  </thead>\n                  <tbody id="recentTableBody"></tbody>\n                </table>\n                <div class="empty-state" id="recentEmpty" style="display: none">\n                  <h5>No hay registros recientes</h5>\n                  <p>\n                    Los registros aparecer\xc3\xa1n aqu\xc3\xad una vez que se agreguen datos\n                    al sistema.\n                  </p>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <!-- Bootstrap JS -->\n    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>\n\n    <script>\n      // Variables globales para los gr\xc3\xa1ficos\n      let registrosChart, generoChart, ejerciciosChart, riesgoChart;\n\n      // Funci\xc3\xb3n para cargar estad\xc3\xadsticas\n      async function cargarEstadisticas() {\n        try {\n          const response = await fetch("/api/dashboard/stats");\n          const data = await response.json();\n\n          if (response.ok) {\n            document.getElementById("totalRegistros").textContent =\n              data.total_registros;\n            document.getElementById("registros7Dias").textContent =\n              data.registros_ultimos_7_dias;\n            document.getElementById("promedioEdad").textContent =\n              data.promedio_edad;\n            document.getElementById("promedioPeso").textContent =\n              data.promedio_peso;\n\n            // Crear gr\xc3\xa1ficos\n            crearGraficoGenero(data.distribucion_genero);\n            crearGraficoEjercicios(data.distribucion_ejercicios);\n            crearGraficoRiesgo(data.distribucion_riesgo);\n          } else {\n            console.error("Error al cargar estad\xc3\xadsticas:", data.error);\n          }\n        } catch (error) {\n          console.error("Error al cargar estad\xc3\xadsticas:", error);\n        }\n      }\n\n      // Funci\xc3\xb3n para cargar datos de gr\xc3\xa1ficos\n      async function cargarDatosGraficos() {\n        try {\n          const response = await fetch("/api/dashboard/chart-data");\n          const data = await response.json();\n\n          if (response.ok) {\n            crearGraficoRegistros(data.registros_por_fecha);\n          } else {\n            console.error("Error al cargar datos de gr\xc3\xa1ficos:", data.error);\n          }\n        } catch (error) {\n          console.error("Error al cargar datos de gr\xc3\xa1ficos:", error);\n        }\n      }\n\n      // Funci\xc3\xb3n para cargar registros recientes\n      async function cargarRegistrosRecientes() {\n        try {\n          const response = await fetch("/api/dashboard/recent-registros");\n          const data = await response.json();\n\n          const tableBody = document.getElementById("recentTableBody");\n          const loading = document.getElementById("recentLoading");\n          const table = document.getElementById("recentTable");\n          const empty = document.getElementById("recentEmpty");\n\n          loading.style.display = "none";\n\n          if (data.length > 0) {\n            table.style.display = "table";\n            tableBody.innerHTML = "";\n\n            data.forEach((registro) => {\n              const row = document.createElement("tr");\n              row.innerHTML = `\n                            <td>${registro.id}</td>\n                            <td>${registro.fecha_hora}</td>\n                            <td>${registro.nombre_completo}</td>\n                            <td>${registro.edad}</td>\n                            <td>${registro.genero}</td>\n                            <td>${registro.tipo_ejercicio}</td>\n                            <td><span class="badge badge-${getRiesgoClass(\n                              registro.nivel_riesgo\n                            )}">${registro.nivel_riesgo}</span></td>\n                        `;\n              tableBody.appendChild(row);\n            });\n          } else {\n            empty.style.display = "block";\n          }\n        } catch (error) {\n          console.error("Error al cargar registros recientes:", error);\n        }\n      }\n\n      // Funci\xc3\xb3n para obtener clase CSS del nivel de riesgo\n      function getRiesgoClass(riesgo) {\n        switch (riesgo.toLowerCase()) {\n          case "bajo":\n            return "bajo";\n          case "medio":\n            return "medio";\n          case "alto":\n            return "alto";\n          default:\n            return "medio";\n        }\n      }\n\n      // Funci\xc3\xb3n para crear gr\xc3\xa1fico de registros por fecha\n      function crearGraficoRegistros(data) {\n        const ctx = document.getElementById("registrosChart").getContext("2d");\n\n        if (registrosChart) {\n          registrosChart.destroy();\n        }\n\n        registrosChart = new Chart(ctx, {\n          type: "line",\n          data: {\n            labels: data.map((item) => item.fecha),\n            datasets: [\n              {\n                label: "Registros",\n                data: data.map((item) => item.cantidad),\n                borderColor: "#3498db",\n                backgroundColor: "rgba(52, 152, 219, 0.1)",\n                borderWidth: 3,\n                fill: true,\n                tension: 0.4,\n              },\n            ],\n          },\n          options: {\n            responsive: true,\n            maintainAspectRatio: false,\n            plugins: {\n              legend: {\n                display: false,\n              },\n            },\n            scales: {\n              y: {\n                beginAtZero: true,\n                ticks: {\n                  stepSize: 1,\n                },\n              },\n            },\n          },\n        });\n      }\n\n      // Funci\xc3\xb3n para crear gr\xc3\xa1fico de g\xc3\xa9nero\n      function crearGraficoGenero(data) {\n        const ctx = document.getElementById("generoChart").getContext("2d");\n\n        if (generoChart) {\n          generoChart.destroy();\n        }\n\n        const labels = Object.keys(data);\n        const values = Object.values(data);\n        const colors = ["#3498db", "#e74c3c", "#f39c12"];\n\n        generoChart = new Chart(ctx, {\n          type: "doughnut",\n          data: {\n            labels: labels,\n            datasets: [\n              {\n                data: values,\n                backgroundColor: colors.slice(0, labels.length),\n                borderWidth: 0,\n              },\n            ],\n          },\n          options: {\n            responsive: true,\n            maintainAspectRatio: false,\n            plugins: {\n              legend: {\n                position: "bottom",\n              },\n            },\n          },\n        });\n      }\n\n      // Funci\xc3\xb3n para crear gr\xc3\xa1fico de ejercicios\n      function crearGraficoEjercicios(data) {\n        const ctx = document.getElementById("ejerciciosChart").getContext("2d");\n\n        if (ejerciciosChart) {\n          ejerciciosChart.destroy();\n        }\n\n        const labels = Object.keys(data);\n        const values = Object.values(data);\n\n        ejerciciosChart = new Chart(ctx, {\n          type: "bar",\n          data: {\n            labels: labels,\n            datasets: [\n              {\n                label: "Cantidad",\n                data: values,\n                backgroundColor: "#27ae60",\n                borderColor: "#27ae60",\n                borderWidth: 1,\n              },\n            ],\n          },\n          options: {\n            responsive: true,\n            maintainAspectRatio: false,\n            plugins: {\n              legend: {\n                display: false,\n              },\n            },\n            scales: {\n              y: {\n                beginAtZero: true,\n                ticks: {\n                  stepSize: 1,\n                },\n              },\n            },\n          },\n        });\n      }\n\n      // Funci\xc3\xb3n para crear gr\xc3\xa1fico de riesgo\n      function crearGraficoRiesgo(data) {\n        const ctx = document.getElementById("riesgoChart").getContext("2d");\n\n        if (riesgoChart) {\n          riesgoChart.destroy();\n        }\n\n        const labels = Object.keys(data);\n        const values = Object.values(data);\n        const colors = ["#27ae60", "#f39c12", "#e74c3c"];\n\n        riesgoChart = new Chart(ctx, {\n          type: "bar",\n          data: {\n            labels: labels,\n            datasets: [\n              {\n                label: "Cantidad",\n                data: values,\n                backgroundColor: colors.slice(0, labels.length),\n                borderColor: colors.slice(0, labels.length),\n                borderWidth: 1,\n              },\n            ],\n          },\n          options: {\n            responsive: true,\n            maintainAspectRatio: false,\n            plugins: {\n              legend: {\n                display: false,\n              },\n            },\n            scales: {\n              y: {\n                beginAtZero: true,\n                ticks: {\n                  stepSize: 1,\n                },\n              },\n            },\n          },\n        });\n      }\n\n      // Funci\xc3\xb3n para actualizar dashboard\n      async function actualizarDashboard() {\n        await Promise.all([\n          cargarEstadisticas(),\n          cargarDatosGraficos(),\n          cargarRegistrosRecientes(),\n        ]);\n      }\n\n      // Inicializar dashboard cuando se carga la p\xc3\xa1gina\n      document.addEventListener("DOMContentLoaded", function () {\n        actualizarDashboard();\n\n        // Actualizar cada 5 minutos\n        setInterval(actualizarDashboard, 300000);\n      });\n    </script>\n  </body>\n</html>'
+</div>
+
+                    </div>
+
+                    <div class="test-item test-fail">
+                        <div class="test-name">[ERROR] test_index_route (tests.test_app.TestAppRoutes.test_index_route)</div>
+                        <div class="test-details">
+                            Estado: FAIL | Duración: 0.00s
+                        </div>
+
+                        <div class="error-message">Traceback (most recent call last):
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\tests\test_app.py", line 31, in test_index_route
+    self.assertIn(b'Registro Protocolo Medicion', response.data)
+AssertionError: b'Registro Protocolo Medicion' not found in b'<!DOCTYPE html>\n<html lang="es">\n  <head>\n    <meta charset="UTF-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <title>Registro Protocolo Medici\xc3\xb3n</title>\n    <!-- Bootstrap CSS -->\n    <link\n      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"\n      rel="stylesheet"\n    />\n    <style>\n      body {\n        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);\n        min-height: 100vh;\n      }\n      .container {\n        max-width: 1200px;\n      }\n      .form-section {\n        background-color: white;\n        padding: 25px;\n        border-radius: 15px;\n        margin-bottom: 25px;\n        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\n        border: 1px solid rgba(0, 0, 0, 0.1);\n        transition: transform 0.2s ease-in-out;\n      }\n      .form-section:hover {\n        transform: translateY(-2px);\n      }\n      .form-section h2 {\n        color: #2c3e50;\n        margin-bottom: 25px;\n        font-weight: 600;\n        border-bottom: 2px solid #3498db;\n        padding-bottom: 10px;\n      }\n      .form-label {\n        font-weight: 500;\n        color: #34495e;\n      }\n      .form-control {\n        border-radius: 8px;\n        border: 1px solid #bdc3c7;\n        padding: 10px;\n        transition: all 0.3s ease;\n      }\n      .form-control:focus {\n        border-color: #3498db;\n        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);\n      }\n      .form-check-input:checked {\n        background-color: #3498db;\n        border-color: #3498db;\n      }\n      .btn-primary {\n        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);\n        border: none;\n        padding: 12px 30px;\n        font-weight: 600;\n        border-radius: 8px;\n        transition: all 0.3s ease;\n      }\n      .btn-primary:hover {\n        transform: translateY(-2px);\n        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);\n        background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);\n      }\n      h1 {\n        color: #2c3e50;\n        font-weight: 700;\n        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);\n        margin-bottom: 30px;\n      }\n      .form-check {\n        padding: 10px;\n        border-radius: 8px;\n        background-color: #f8f9fa;\n        margin-bottom: 10px;\n        transition: all 0.3s ease;\n      }\n      .form-check:hover {\n        background-color: #e9ecef;\n      }\n      .form-check-label {\n        color: #2c3e50;\n        font-weight: 500;\n      }\n      .row {\n        margin-bottom: 15px;\n      }\n      .mb-3 {\n        margin-bottom: 1.5rem !important;\n      }\n      .invalid-feedback {\n        color: #e74c3c;\n        font-weight: 500;\n      }\n      .was-validated .form-control:invalid {\n        border-color: #e74c3c;\n      }\n      .was-validated .form-control:valid {\n        border-color: #2ecc71;\n      }\n      .toast-container {\n        position: fixed;\n        top: 20px;\n        right: 20px;\n        z-index: 1050;\n      }\n      .alert-container {\n        position: fixed;\n        top: 20px;\n        left: 50%;\n        transform: translateX(-50%);\n        z-index: 1050;\n        min-width: 300px;\n      }\n    </style>\n  </head>\n  <body class="bg-light">\n    <!-- Navbar -->\n    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">\n      <div class="container">\n        <a class="navbar-brand fw-bold" href="/"> Protocolo Medici\xc3\xb3n </a>\n        <div class="navbar-nav ms-auto">\n          <a class="nav-link active" href="/">Nuevo Registro</a>\n          <a class="nav-link" href="/registros">Ver Registros</a>\n          <a class="nav-link" href="/dashboard">Dashboard</a>\n        </div>\n      </div>\n    </nav>\n\n    <!-- Contenedor para mensajes de alerta -->\n    <div class="alert-container"></div>\n\n    <!-- Contenedor para notificaciones toast -->\n    <div class="toast-container"></div>\n\n    <div class="container py-5">\n      <h1 class="text-center mb-4">Registro Protocolo Medici\xc3\xb3n</h1>\n      <form\n        action="/guardar"\n        method="POST"\n        class="needs-validation"\n        novalidate\n        id="protocoloForm"\n      >\n        <!-- Fecha y Hora -->\n        <div class="form-section">\n          <h2>Fecha y Hora de la Sesi\xc3\xb3n</h2>\n          <div class="row">\n            <div class="col-md-6 mb-3">\n              <label class="form-label">Fecha y Hora</label>\n              <input\n                type="datetime-local"\n                class="form-control"\n                id="fecha_hora"\n                name="fecha_hora"\n                required\n              />\n            </div>\n          </div>\n        </div>\n\n        <!-- 1. Datos f\xc3\xadsicos b\xc3\xa1sicos -->\n        <div class="form-section">\n          <h2>1. Datos F\xc3\xadsicos B\xc3\xa1sicos</h2>\n          <div class="row">\n            <div class="col-md-6 mb-3">\n              <label class="form-label">Nombre Completo</label>\n              <input\n                name="nombre_completo"\n                type="text"\n                class="form-control"\n                placeholder="Ingrese el nombre completo"\n                required\n              />\n            </div>\n            <div class="col-md-3 mb-3">\n              <label class="form-label">Edad</label>\n              <input\n                name="edad"\n                type="number"\n                class="form-control"\n                min="1"\n                max="120"\n                placeholder="1-120 a\xc3\xb1os"\n                required\n              />\n              <div class="invalid-feedback">\n                La edad debe estar entre 1 y 120 a\xc3\xb1os\n              </div>\n            </div>\n            <div class="col-md-3 mb-3">\n              <label class="form-label">G\xc3\xa9nero</label>\n              <select name="genero" class="form-select" required>\n                <option value="">Seleccione g\xc3\xa9nero...</option>\n                <option value="Masculino">Masculino</option>\n                <option value="Femenino">Femenino</option>\n                <option value="Otro">Otro</option>\n              </select>\n            </div>\n          </div>\n          <div class="row">\n            <div class="col-md-4 mb-3">\n              <label class="form-label">Peso Corporal (kg)</label>\n              <input\n                name="peso_corporal"\n                type="number"\n                step="0.01"\n                class="form-control"\n                min="0.01"\n                placeholder="Ej: 70.5"\n                required\n              />\n              <div class="invalid-feedback">El peso debe ser mayor a 0</div>\n            </div>\n            <div class="col-md-4 mb-3">\n              <label class="form-label">Altura (cm)</label>\n              <input\n                name="altura"\n                type="number"\n                step="0.01"\n                class="form-control"\n                min="0.01"\n                placeholder="Ej: 170.5"\n                required\n              />\n              <div class="invalid-feedback">La altura debe ser mayor a 0</div>\n            </div>\n          </div>\n          <div class="row">\n            <div class="col-md-4 mb-3">\n              <label class="form-label">Longitud Brazo (cm)</label>\n              <input\n                name="longitud_brazo"\n                type="number"\n                step="0.01"\n                class="form-control"\n                placeholder="Opcional"\n              />\n            </div>\n            <div class="col-md-4 mb-3">\n              <label class="form-label">Longitud Pierna (cm)</label>\n              <input\n                name="longitud_pierna"\n                type="number"\n                step="0.01"\n                class="form-control"\n                placeholder="Opcional"\n              />\n            </div>\n            <div class="col-md-4 mb-3">\n              <label class="form-label">Longitud Torso (cm)</label>\n              <input\n                name="longitud_torso"\n                type="number"\n                step="0.01"\n                class="form-control"\n                placeholder="Opcional"\n              />\n            </div>\n          </div>\n        </div>\n\n        <!-- 2. Historial m\xc3\xa9dico -->\n        <div class="form-section">\n          <h2>2. Historial M\xc3\xa9dico y Condici\xc3\xb3n F\xc3\xadsica</h2>\n          <div class="row">\n            <div class="col-md-6 mb-3">\n              <div class="form-check">\n                <input\n                  name="antecedentes_lesiones"\n                  type="checkbox"\n                  class="form-check-input"\n                  value="1"\n                />\n                <label class="form-check-label"\n                  >Antecedentes de lesiones musculoesquel\xc3\xa9ticas</label\n                >\n              </div>\n            </div>\n            <div class="col-md-6 mb-3">\n              <div class="form-check">\n                <input\n                  name="limitaciones_movilidad"\n                  type="checkbox"\n                  class="form-check-input"\n                  value="1"\n                />\n                <label class="form-check-label"\n                  >Limitaciones de movilidad o problemas de salud</label\n                >\n              </div>\n            </div>\n          </div>\n          <div class="row">\n            <div class="col-md-6 mb-3">\n              <div class="form-check">\n                <input\n                  name="experiencia_levantamiento"\n                  type="checkbox"\n                  class="form-check-input"\n                  value="1"\n                />\n                <label class="form-check-label"\n                  >Experiencia en levantamiento de cargas</label\n                >\n              </div>\n            </div>\n            <div class="col-md-6 mb-3">\n              <div class="form-check">\n                <input\n                  name="sin_contraindicaciones"\n                  type="checkbox"\n                  class="form-check-input"\n                  value="1"\n                  checked\n                />\n                <label class="form-check-label"\n                  >Sin contraindicaciones para la actividad</label\n                >\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <!-- 3. Calibraci\xc3\xb3n -->\n        <div class="form-section">\n          <h2>3. Calibraci\xc3\xb3n del Traje</h2>\n          <div class="row">\n            <div class="col-md-4 mb-3">\n              <div class="form-check">\n                <input\n                  name="ajuste_traje"\n                  type="checkbox"\n                  class="form-check-input"\n                  value="1"\n                  checked\n                />\n                <label class="form-check-label"\n                  >Ajuste correcto del traje</label\n                >\n              </div>\n            </div>\n            <div class="col-md-4 mb-3">\n              <div class="form-check">\n                <input\n                  name="calibracion_sincronizada"\n                  type="checkbox"\n                  class="form-check-input"\n                  value="1"\n                  checked\n                />\n                <label class="form-check-label"\n                  >Calibraci\xc3\xb3n inicial sincronizada</label\n                >\n              </div>\n            </div>\n            <div class="col-md-4 mb-3">\n              <div class="form-check">\n                <input\n                  name="sensores_posicion"\n                  type="checkbox"\n                  class="form-check-input"\n                  value="1"\n                  checked\n                />\n                <label class="form-check-label"\n                  >Sensores en posici\xc3\xb3n correcta</label\n                >\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <!-- 4. Par\xc3\xa1metros del ejercicio -->\n        <div class="form-section">\n          <h2>4. Par\xc3\xa1metros del Ejercicio</h2>\n          <div class="row">\n            <div class="col-md-6 mb-3">\n              <label class="form-label">Tipo de Ejercicio</label>\n              <select name="tipo_ejercicio" class="form-select" required>\n                <option value="">Seleccione tipo de ejercicio...</option>\n                <option value="Levantamiento de cajas desde el suelo">\n                  Levantamiento de cajas desde el suelo\n                </option>\n                <option value="Transporte manual de cargas">\n                  Transporte manual de cargas\n                </option>\n                <option value="Giro y torsi\xc3\xb3n con carga">\n                  Giro y torsi\xc3\xb3n con carga\n                </option>\n              </select>\n            </div>\n            <div class="col-md-6 mb-3">\n              <label class="form-label">Nivel de Riesgo</label>\n              <select name="nivel_riesgo" class="form-select" required>\n                <option value="">Seleccione nivel de riesgo...</option>\n                <option value="Bajo">Bajo</option>\n                <option value="Medio">Medio</option>\n                <option value="Medio-Alto" selected>Medio-Alto</option>\n                <option value="Alto">Alto</option>\n              </select>\n            </div>\n          </div>\n          <div class="row">\n            <div class="col-md-4 mb-3">\n              <label class="form-label">Peso de la Carga (kg)</label>\n              <input\n                name="peso_carga"\n                type="number"\n                step="0.01"\n                class="form-control"\n                min="0.01"\n                placeholder="Ej: 25.5"\n                required\n              />\n              <div class="invalid-feedback">\n                El peso de la carga debe ser mayor a 0\n              </div>\n            </div>\n            <div class="col-md-4 mb-3">\n              <label class="form-label">Forma del Objeto</label>\n              <select name="forma_objeto" class="form-select" required>\n                <option value="">Seleccione forma...</option>\n                <option value="Redondo">Redondo</option>\n                <option value="Cuadrado">Cuadrado</option>\n                <option value="Rectangular">Rectangular</option>\n              </select>\n            </div>\n            <div class="col-md-4 mb-3">\n              <label class="form-label">Velocidad del Movimiento</label>\n              <select name="velocidad_movimiento" class="form-select" required>\n                <option value="">Seleccione velocidad...</option>\n                <option value="Lento">Lento</option>\n                <option value="Moderado">Moderado</option>\n                <option value="Rapido">R\xc3\xa1pido</option>\n              </select>\n            </div>\n          </div>\n        </div>\n\n        <!-- 5. Contexto del ejercicio -->\n        <div class="form-section">\n          <h2>5. Contexto del Ejercicio</h2>\n          <div class="row">\n            <div class="col-md-6 mb-3">\n              <label class="form-label">Tipo de Superficie</label>\n              <select name="tipo_superficie" class="form-select" required>\n                <option value="">Seleccione tipo de superficie...</option>\n                <optgroup label="Oficinas y Hogares">\n                  <option value="Alfombra">Alfombra</option>\n                  <option value="Baldosa">\n                    Baldosa (Cer\xc3\xa1mica, Porcelana, etc.)\n                  </option>\n                  <option value="Madera">Madera</option>\n                  <option value="Cemento">Cemento Pulido/Microcemento</option>\n                </optgroup>\n                <optgroup label="Entornos de Construcci\xc3\xb3n y Exteriores">\n                  <option value="Concreto">Concreto/Hormig\xc3\xb3n</option>\n                  <option value="Asfalto">Asfalto</option>\n                  <option value="Grava">Grava/Ripio</option>\n                </optgroup>\n                <optgroup label="Almacenes e Instalaciones Industriales">\n                  <option value="Concreto Alta Resistencia">\n                    Concreto/Hormig\xc3\xb3n de Alta Resistencia\n                  </option>\n                  <option value="Epoxico">Pisos Ep\xc3\xb3xicos/Resinas</option>\n                </optgroup>\n              </select>\n            </div>\n            <div class="col-md-3 mb-3">\n              <label class="form-label">Duraci\xc3\xb3n (minutos)</label>\n              <input\n                name="duracion_minutos"\n                type="number"\n                class="form-control"\n                min="1"\n                placeholder="Ej: 30"\n                required\n              />\n              <div class="invalid-feedback">La duraci\xc3\xb3n debe ser mayor a 0</div>\n            </div>\n            <div class="col-md-3 mb-3">\n              <label class="form-label">N\xc3\xbamero de Repeticiones</label>\n              <input\n                name="num_repeticiones"\n                type="number"\n                class="form-control"\n                min="1"\n                placeholder="Ej: 10"\n                required\n              />\n              <div class="invalid-feedback">\n                El n\xc3\xbamero de repeticiones debe ser mayor a 0\n              </div>\n            </div>\n          </div>\n          <div class="row">\n            <div class="col-md-12 mb-3">\n              <div class="form-check">\n                <input\n                  name="pausas"\n                  type="checkbox"\n                  class="form-check-input"\n                  value="1"\n                />\n                <label class="form-check-label"\n                  >Incluir pausas o descansos</label\n                >\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <div\n          class="d-flex justify-content-between align-items-center mt-4 mb-4"\n        >\n          <a href="/registros" class="btn btn-outline-primary">\n            <i class="bi bi-list-ul"></i> Ver Registros\n          </a>\n          <button type="submit" class="btn btn-primary">\n            <i class="bi bi-save"></i> Guardar Protocolo\n          </button>\n        </div>\n      </form>\n    </div>\n\n    <!-- Bootstrap Icons -->\n    <link\n      rel="stylesheet"\n      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"\n    />\n\n    <!-- Bootstrap JS -->\n    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>\n    <script>\n      // Establecer fecha y hora actual por defecto\n      function establecerFechaHoraActual() {\n        const now = new Date();\n        // Ajustar al formato requerido por el input datetime-local (YYYY-MM-DDThh:mm)\n        const year = now.getFullYear();\n        const month = String(now.getMonth() + 1).padStart(2, "0");\n        const day = String(now.getDate()).padStart(2, "0");\n        const hours = String(now.getHours()).padStart(2, "0");\n        const minutes = String(now.getMinutes()).padStart(2, "0");\n\n        const fechaHoraActual = `${year}-${month}-${day}T${hours}:${minutes}`;\n        document.getElementById("fecha_hora").value = fechaHoraActual;\n      }\n\n      // Llamar a la funci\xc3\xb3n cuando se carga la p\xc3\xa1gina\n      document.addEventListener("DOMContentLoaded", establecerFechaHoraActual);\n\n      // Funci\xc3\xb3n para mostrar alertas\n      function mostrarAlerta(mensaje, tipo = "success") {\n        const alertContainer = document.querySelector(".alert-container");\n        const alert = document.createElement("div");\n        alert.className = `alert alert-${tipo} alert-dismissible fade show`;\n        alert.innerHTML = `\n          ${mensaje}\n          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>\n        `;\n        alertContainer.appendChild(alert);\n\n        // Auto cerrar despu\xc3\xa9s de 5 segundos\n        setTimeout(() => {\n          alert.remove();\n        }, 5000);\n      }\n\n      // Funci\xc3\xb3n para mostrar toast\n      function mostrarToast(mensaje, tipo = "success") {\n        const toastContainer = document.querySelector(".toast-container");\n        const toast = document.createElement("div");\n        toast.className = `toast align-items-center text-white bg-${tipo} border-0`;\n        toast.setAttribute("role", "alert");\n        toast.setAttribute("aria-live", "assertive");\n        toast.setAttribute("aria-atomic", "true");\n\n        toast.innerHTML = `\n          <div class="d-flex">\n            <div class="toast-body">\n              ${mensaje}\n            </div>\n            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>\n          </div>\n        `;\n\n        toastContainer.appendChild(toast);\n        const bsToast = new bootstrap.Toast(toast);\n        bsToast.show();\n\n        // Remover el toast despu\xc3\xa9s de que se oculte\n        toast.addEventListener("hidden.bs.toast", () => {\n          toast.remove();\n        });\n      }\n\n      // Funci\xc3\xb3n para validar campos requeridos\n      function validarCamposRequeridos() {\n        const camposRequeridos = document.querySelectorAll("[required]");\n        let camposFaltantes = [];\n\n        camposRequeridos.forEach((campo) => {\n          if (!campo.value.trim()) {\n            camposFaltantes.push(campo.previousElementSibling.textContent);\n            campo.classList.add("is-invalid");\n          } else {\n            campo.classList.remove("is-invalid");\n          }\n        });\n\n        if (camposFaltantes.length > 0) {\n          mostrarAlerta(\n            `Por favor complete los siguientes campos: ${camposFaltantes.join(\n              ", "\n            )}`,\n            "warning"\n          );\n          return false;\n        }\n        return true;\n      }\n\n      document\n        .getElementById("protocoloForm")\n        .addEventListener("submit", function (e) {\n          e.preventDefault();\n\n          if (!this.checkValidity() || !validarCamposRequeridos()) {\n            e.stopPropagation();\n            this.classList.add("was-validated");\n            return;\n          }\n\n          const formData = new FormData(this);\n\n          // Mostrar indicador de carga\n          mostrarToast("Guardando datos...", "info");\n\n          fetch("/guardar", {\n            method: "POST",\n            body: formData,\n          })\n            .then((response) => response.json())\n            .then((data) => {\n              if (data.success) {\n                mostrarToast(data.message, "success");\n                setTimeout(() => {\n                  window.location.href = "/registros";\n                }, 1500);\n              } else {\n                mostrarAlerta(data.message, "danger");\n              }\n            })\n            .catch((error) => {\n              console.error("Error:", error);\n              mostrarAlerta("Error al guardar los datos", "danger");\n            });\n        });\n\n      // Validaci\xc3\xb3n en tiempo real\n      document.querySelectorAll("input, select").forEach((campo) => {\n        campo.addEventListener("input", function () {\n          if (this.hasAttribute("required")) {\n            if (!this.value.trim()) {\n              this.classList.add("is-invalid");\n            } else {\n              this.classList.remove("is-invalid");\n            }\n          }\n        });\n      });\n    </script>\n  </body>\n</html>'
+</div>
+
+                    </div>
+
+                    <div class="test-item test-fail">
+                        <div class="test-name">[ERROR] test_api_dashboard_chart_data (tests.test_app.TestAPIRoutes.test_api_dashboard_chart_data)</div>
+                        <div class="test-details">
+                            Estado: FAIL | Duración: 0.00s
+                        </div>
+
+                        <div class="error-message">Traceback (most recent call last):
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1395, in patched
+    return func(*newargs, **newkeywargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\tests\test_app.py", line 112, in test_api_dashboard_chart_data
+    self.assertEqual(response.status_code, 200)
+AssertionError: 500 != 200
+</div>
+
+                    </div>
+
+                    <div class="test-item test-fail">
+                        <div class="test-name">[ERROR] test_api_dashboard_stats_success (tests.test_app.TestAPIRoutes.test_api_dashboard_stats_success)</div>
+                        <div class="test-details">
+                            Estado: FAIL | Duración: 0.00s
+                        </div>
+
+                        <div class="error-message">Traceback (most recent call last):
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1395, in patched
+    return func(*newargs, **newkeywargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\tests\test_app.py", line 81, in test_api_dashboard_stats_success
+    self.assertEqual(response.status_code, 200)
+AssertionError: 500 != 200
+</div>
+
+                    </div>
+
+                    <div class="test-item test-fail">
+                        <div class="test-name">[ERROR] test_api_recent_registros (tests.test_app.TestAPIRoutes.test_api_recent_registros)</div>
+                        <div class="test-details">
+                            Estado: FAIL | Duración: 0.00s
+                        </div>
+
+                        <div class="error-message">Traceback (most recent call last):
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1395, in patched
+    return func(*newargs, **newkeywargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\tests\test_app.py", line 131, in test_api_recent_registros
+    self.assertEqual(response.status_code, 200)
+AssertionError: 500 != 200
+</div>
+
+                    </div>
+
+                    <div class="test-item test-fail">
+                        <div class="test-name">[ERROR] test_exportar_excel_success (tests.test_app.TestExportOperations.test_exportar_excel_success)</div>
+                        <div class="test-details">
+                            Estado: FAIL | Duración: 0.00s
+                        </div>
+
+                        <div class="error-message">Traceback (most recent call last):
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1395, in patched
+    return func(*newargs, **newkeywargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\tests\test_app.py", line 248, in test_exportar_excel_success
+    self.assertIn('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', response.headers['Content-Type'])
+AssertionError: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' not found in 'application/json'
+</div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_0</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_1</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_2</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_3</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_4</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_5</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_6</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_7</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_8</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_9</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_10</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="suite-card">
+                <div class="suite-header">
+                    <h3>Integración</h3>
+                    <div class="suite-stats">
+                        <div class="stat success">[OK] 3 Exitosas</div>
+                        <div class="stat failure">[ERROR] 4 Fallidas</div>
+                        <div class="stat error">[WARNING] 0 Errores</div>
+                        <div class="stat total">[TIME] 0.21s</div>
+                    </div>
+                </div>
+                <div class="test-results">
+
+                    <div class="test-item test-fail">
+                        <div class="test-name">[ERROR] test_complete_workflow (tests.test_integration.TestFullWorkflow.test_complete_workflow)</div>
+                        <div class="test-details">
+                            Estado: FAIL | Duración: 0.00s
+                        </div>
+
+                        <div class="error-message">Traceback (most recent call last):
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1395, in patched
+    return func(*newargs, **newkeywargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\tests\test_integration.py", line 96, in test_complete_workflow
+    self.assertTrue(data['success'])
+AssertionError: False is not true
+</div>
+
+                    </div>
+
+                    <div class="test-item test-fail">
+                        <div class="test-name">[ERROR] test_dashboard_chart_data_integration (tests.test_integration.TestDashboardIntegration.test_dashboard_chart_data_integration)</div>
+                        <div class="test-details">
+                            Estado: FAIL | Duración: 0.00s
+                        </div>
+
+                        <div class="error-message">Traceback (most recent call last):
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1395, in patched
+    return func(*newargs, **newkeywargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\tests\test_integration.py", line 184, in test_dashboard_chart_data_integration
+    self.assertEqual(response.status_code, 200)
+AssertionError: 500 != 200
+</div>
+
+                    </div>
+
+                    <div class="test-item test-fail">
+                        <div class="test-name">[ERROR] test_dashboard_with_multiple_records (tests.test_integration.TestDashboardIntegration.test_dashboard_with_multiple_records)</div>
+                        <div class="test-details">
+                            Estado: FAIL | Duración: 0.00s
+                        </div>
+
+                        <div class="error-message">Traceback (most recent call last):
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1395, in patched
+    return func(*newargs, **newkeywargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\tests\test_integration.py", line 146, in test_dashboard_with_multiple_records
+    self.assertEqual(response.status_code, 200)
+AssertionError: 500 != 200
+</div>
+
+                    </div>
+
+                    <div class="test-item test-fail">
+                        <div class="test-name">[ERROR] test_dashboard_performance_with_large_dataset (tests.test_integration.TestPerformanceIntegration.test_dashboard_performance_with_large_dataset)</div>
+                        <div class="test-details">
+                            Estado: FAIL | Duración: 0.00s
+                        </div>
+
+                        <div class="error-message">Traceback (most recent call last):
+  File "C:\Users\luisg\anaconda3\Lib\unittest\mock.py", line 1395, in patched
+    return func(*newargs, **newkeywargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\searching\serching\software\app_protocolo_medicion_dashboard\src\app\main\app\tests\test_integration.py", line 327, in test_dashboard_performance_with_large_dataset
+    self.assertEqual(response.status_code, 200)
+AssertionError: 500 != 200
+</div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_0</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_1</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                    <div class="test-item test-pass">
+                        <div class="test-name">[OK] test_successful_2</div>
+                        <div class="test-details">
+                            Estado: PASS | Duración: 0.00s
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="footer">
+            <p>Reporte generado automáticamente por el sistema de pruebas</p>
+            <p>Duración total de ejecución: 0.42 segundos</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Historial de Pruebas - Protocolo de Medición</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary-color: #3498db;
+        --secondary-color: #2c3e50;
+        --success-color: #27ae60;
+        --warning-color: #f39c12;
+        --danger-color: #e74c3c;
+        --light-bg: #f8f9fa;
+        --dark-bg: #2c3e50;
+      }
+
+      body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .container {
+        padding: 20px 0;
+      }
+
+      .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+
+      .card-header {
+        background: linear-gradient(135deg, var(--primary-color), #2980b9);
+        color: white;
+        border-radius: 15px 15px 0 0 !important;
+        border: none;
+        padding: 20px;
+      }
+
+      .stats-card {
+        text-align: center;
+        padding: 30px 20px;
+      }
+
+      .stats-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+      }
+
+      .stats-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--secondary-color);
+        margin-bottom: 10px;
+      }
+
+      .stats-label {
+        font-size: 1.1rem;
+        color: #666;
+        font-weight: 500;
+      }
+
+      .execution-item {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-left: 4px solid var(--primary-color);
+        transition: all 0.3s ease;
+      }
+
+      .execution-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .execution-success {
+        border-left-color: var(--success-color);
+      }
+      .execution-warning {
+        border-left-color: var(--warning-color);
+      }
+      .execution-danger {
+        border-left-color: var(--danger-color);
+      }
+
+      .success-rate {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .success-rate.high {
+        color: var(--success-color);
+      }
+      .success-rate.medium {
+        color: var(--warning-color);
+      }
+      .success-rate.low {
+        color: var(--danger-color);
+      }
+
+      .trend-chart {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .trend-chart img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .navbar {
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary-color), #2980b9);
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        color: white;
+      }
+
+      .report-iframe {
+        width: 100%;
+        height: 600px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #666;
+      }
+
+      .empty-state i {
+        font-size: 4rem;
+        color: #ddd;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .stats-number {
+          font-size: 2rem;
+        }
+
+        .execution-item {
+          padding: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="/"> Historial de Pruebas </a>
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="http://localhost:5000"
+            >Aplicación Principal</a
+          >
+          <a class="nav-link" href="http://localhost:5000/dashboard"
+            >Dashboard</a
+          >
+          <a class="nav-link active" href="#">Historial</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- Título -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <h1 class="text-white text-center mb-4">
+            Historial de Pruebas Automáticas
+          </h1>
+          <p class="text-white text-center opacity-75">
+            Seguimiento del rendimiento y calidad de las pruebas del sistema
+          </p>
+        </div>
+      </div>
+
+      <!-- Estadísticas Generales -->
+      <div class="row mb-4" id="generalStats">
+        <div class="col-md-3 mb-3">
+          <div class="card stats-card">
+            <div class="stats-number">{{ total_executions }}</div>
+            <div class="stats-label">Ejecuciones Totales</div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="card stats-card">
+            <div
+              class="stats-number success-rate {% if latest_success_rate >= 80 %}high{% elif latest_success_rate >= 60 %}medium{% else %}low{% endif %}"
+            >
+              {{ "%.1f"|format(latest_success_rate) }}%
+            </div>
+            <div class="stats-label">Última Tasa de Éxito</div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="card stats-card">
+            <div class="stats-number">
+              {{ "%.2f"|format(latest_duration) }}s
+            </div>
+            <div class="stats-label">Última Duración</div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="card stats-card">
+            <div class="stats-number">{{ history|length }}</div>
+            <div class="stats-label">Registros en Historial</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráfico de Tendencias -->
+      {% if trend_chart %}
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Tendencia de Rendimiento</h5>
+            </div>
+            <div class="card-body">
+              <div class="trend-chart">
+                <img
+                  src="data:image/png;base64,{{ trend_chart }}"
+                  alt="Gráfico de tendencias"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Reporte Más Reciente -->
+      {% if latest_report %}
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Reporte Más Reciente</h5>
+            </div>
+            <div class="card-body">
+              <iframe
+                class="report-iframe"
+                srcdoc="{{ latest_report }}"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Historial de Ejecuciones -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Historial de Ejecuciones</h5>
+            </div>
+            <div class="card-body">
+              {% if history %}
+              <div id="executionHistory">
+                {% for execution in history[-10:]|reverse %}
+                <div
+                  class="execution-item execution-{% if execution.results|sum(attribute='success_rate') / execution.results|length >= 80 %}success{% elif execution.results|sum(attribute='success_rate') / execution.results|length >= 60 %}warning{% else %}danger{% endif %}"
+                >
+                  <div class="row align-items-center">
+                    <div class="col-md-3">
+                      <h6 class="mb-1">{{ execution.timestamp[:10] }}</h6>
+                      <small class="text-muted">
+                        {{ execution.timestamp[11:19] }}
+                      </small>
+                    </div>
+                    <div class="col-md-3">
+                      <div
+                        class="success-rate {% if execution.results|sum(attribute='success_rate') / execution.results|length >= 80 %}high{% elif execution.results|sum(attribute='success_rate') / execution.results|length >= 60 %}medium{% else %}low{% endif %}"
+                      >
+                        {{
+                        "%.1f"|format(execution.results|sum(attribute='success_rate')
+                        / execution.results|length) }}%
+                      </div>
+                      <small class="text-muted">Tasa de Éxito</small>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="stats-number">
+                        {{ "%.2f"|format(execution.total_duration) }}s
+                      </div>
+                      <small class="text-muted">Duración</small>
+                    </div>
+                    <div class="col-md-3 text-end">
+                      <button
+                        class="btn btn-primary btn-sm"
+                        onclick="viewReport('{{ execution.timestamp[:19].replace(':', '') }}')"
+                      >
+                        Ver Reporte
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Detalles de suites -->
+                  <div class="row mt-3">
+                    {% for suite_name, suite_data in execution.results.items()
+                    %}
+                    <div class="col-md-4 mb-2">
+                      <div class="d-flex justify-content-between">
+                        <span class="fw-bold">{{ suite_name }}</span>
+                        <span
+                          class="badge bg-{% if suite_data.success_rate >= 80 %}success{% elif suite_data.success_rate >= 60 %}warning{% else %}danger{% endif %}"
+                        >
+                          {{ "%.1f"|format(suite_data.success_rate) }}%
+                        </span>
+                      </div>
+                      <small class="text-muted">
+                        {{ suite_data.passed_tests }}/{{ suite_data.total_tests
+                        }} pruebas
+                      </small>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              {% else %}
+              <div class="empty-state">
+                <h5>No hay historial de pruebas</h5>
+                <p>
+                  Los resultados de las pruebas aparecerán aquí una vez que se
+                  ejecuten las pruebas automáticas.
+                </p>
+                <button class="btn btn-primary" onclick="runTests()">
+                  Ejecutar Pruebas
+                </button>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      function viewReport(timestamp) {
+        // Abrir reporte en nueva ventana
+        window.open(`/report/${timestamp}`, "_blank");
+      }
+
+      function runTests() {
+        // Función para ejecutar pruebas (se puede implementar con AJAX)
+        alert("Función de ejecución de pruebas en desarrollo");
+      }
+
+      // Actualizar datos cada 30 segundos
+      setInterval(function () {
+        fetch("/api/stats")
+          .then((response) => response.json())
+          .then((data) => {
+            // Actualizar estadísticas si es necesario
+            console.log("Datos actualizados:", data);
+          })
+          .catch((error) => {
+            console.error("Error al actualizar datos:", error);
+          });
+      }, 30000);
+
+      // Función para imprimir reporte
+      function printReport() {
+        window.print();
+      }
+    </script>
+  </body>
+</html>

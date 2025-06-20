@@ -1,0 +1,290 @@
+[
+  {
+    "timestamp": "2025-06-20T13:51:04.728713",
+    "start_time": "2025-06-20T13:51:04.728713",
+    "end_time": "2025-06-20T13:51:05.091831",
+    "total_duration": 0.363118,
+    "results": {
+      "Modelos de Base de Datos": {
+        "total_tests": 15,
+        "passed_tests": 11,
+        "failed_tests": 1,
+        "error_tests": 3,
+        "success_rate": 73.33333333333333,
+        "duration": 0.023936
+      },
+      "Aplicación Flask": {
+        "total_tests": 17,
+        "passed_tests": 11,
+        "failed_tests": 6,
+        "error_tests": 0,
+        "success_rate": 64.70588235294117,
+        "duration": 0.279289
+      },
+      "Integración": {
+        "total_tests": 7,
+        "passed_tests": 3,
+        "failed_tests": 4,
+        "error_tests": 0,
+        "success_rate": 42.857142857142854,
+        "duration": 0.059893
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-20T13:54:45.819186",
+    "start_time": "2025-06-20T13:54:45.819186",
+    "end_time": "2025-06-20T13:54:46.240477",
+    "total_duration": 0.421291,
+    "results": {
+      "Modelos de Base de Datos": {
+        "total_tests": 15,
+        "passed_tests": 12,
+        "failed_tests": 0,
+        "error_tests": 3,
+        "success_rate": 80.0,
+        "duration": 0.026894
+      },
+      "Aplicación Flask": {
+        "total_tests": 17,
+        "passed_tests": 11,
+        "failed_tests": 6,
+        "error_tests": 0,
+        "success_rate": 64.70588235294117,
+        "duration": 0.18069
+      },
+      "Integración": {
+        "total_tests": 7,
+        "passed_tests": 3,
+        "failed_tests": 4,
+        "error_tests": 0,
+        "success_rate": 42.857142857142854,
+        "duration": 0.213707
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-20T13:56:55.820336",
+    "start_time": "2025-06-20T13:56:55.820336",
+    "end_time": "2025-06-20T13:56:56.253691",
+    "total_duration": 0.433355,
+    "results": {
+      "Modelos de Base de Datos": {
+        "total_tests": 15,
+        "passed_tests": 12,
+        "failed_tests": 0,
+        "error_tests": 3,
+        "success_rate": 80.0,
+        "duration": 0.027926
+      },
+      "Aplicación Flask": {
+        "total_tests": 17,
+        "passed_tests": 11,
+        "failed_tests": 6,
+        "error_tests": 0,
+        "success_rate": 64.70588235294117,
+        "duration": 0.181608
+      },
+      "Integración": {
+        "total_tests": 7,
+        "passed_tests": 4,
+        "failed_tests": 3,
+        "error_tests": 0,
+        "success_rate": 57.14285714285714,
+        "duration": 0.223821
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-20T13:57:41.590704",
+    "start_time": "2025-06-20T13:57:41.590704",
+    "end_time": "2025-06-20T13:57:42.164514",
+    "total_duration": 0.57381,
+    "results": {
+      "Modelos de Base de Datos": {
+        "total_tests": 15,
+        "passed_tests": 12,
+        "failed_tests": 0,
+        "error_tests": 3,
+        "success_rate": 80.0,
+        "duration": 0.026928
+      },
+      "Aplicación Flask": {
+        "total_tests": 17,
+        "passed_tests": 11,
+        "failed_tests": 6,
+        "error_tests": 0,
+        "success_rate": 64.70588235294117,
+        "duration": 0.169152
+      },
+      "Integración": {
+        "total_tests": 7,
+        "passed_tests": 4,
+        "failed_tests": 3,
+        "error_tests": 0,
+        "success_rate": 57.14285714285714,
+        "duration": 0.376733
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-20T13:59:28.334836",
+    "start_time": "2025-06-20T13:59:28.334836",
+    "end_time": "2025-06-20T13:59:28.883265",
+    "total_duration": 0.548429,
+    "results": {
+      "Modelos de Base de Datos": {
+        "total_tests": 15,
+        "passed_tests": 12,
+        "failed_tests": 0,
+        "error_tests": 3,
+        "success_rate": 80.0,
+        "duration": 0.024933
+      },
+      "Aplicación Flask": {
+        "total_tests": 17,
+        "passed_tests": 12,
+        "failed_tests": 5,
+        "error_tests": 0,
+        "success_rate": 70.58823529411765,
+        "duration": 0.18179
+      },
+      "Integración": {
+        "total_tests": 7,
+        "passed_tests": 4,
+        "failed_tests": 3,
+        "error_tests": 0,
+        "success_rate": 57.14285714285714,
+        "duration": 0.341706
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-20T14:01:33.956325",
+    "start_time": "2025-06-20T14:01:33.956325",
+    "end_time": "2025-06-20T14:01:34.509230",
+    "total_duration": 0.552905,
+    "results": {
+      "Modelos de Base de Datos": {
+        "total_tests": 15,
+        "passed_tests": 12,
+        "failed_tests": 0,
+        "error_tests": 3,
+        "success_rate": 80.0,
+        "duration": 0.023904
+      },
+      "Aplicación Flask": {
+        "total_tests": 17,
+        "passed_tests": 12,
+        "failed_tests": 5,
+        "error_tests": 0,
+        "success_rate": 70.58823529411765,
+        "duration": 0.209473
+      },
+      "Integración": {
+        "total_tests": 7,
+        "passed_tests": 4,
+        "failed_tests": 3,
+        "error_tests": 0,
+        "success_rate": 57.14285714285714,
+        "duration": 0.319528
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-20T14:04:06.956687",
+    "start_time": "2025-06-20T14:04:06.956687",
+    "end_time": "2025-06-20T14:04:07.525507",
+    "total_duration": 0.56882,
+    "results": {
+      "Modelos de Base de Datos": {
+        "total_tests": 15,
+        "passed_tests": 12,
+        "failed_tests": 0,
+        "error_tests": 3,
+        "success_rate": 80.0,
+        "duration": 0.029954
+      },
+      "Aplicación Flask": {
+        "total_tests": 17,
+        "passed_tests": 14,
+        "failed_tests": 3,
+        "error_tests": 0,
+        "success_rate": 82.35294117647058,
+        "duration": 0.172093
+      },
+      "Integración": {
+        "total_tests": 7,
+        "passed_tests": 4,
+        "failed_tests": 3,
+        "error_tests": 0,
+        "success_rate": 57.14285714285714,
+        "duration": 0.366773
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-20T14:05:52.769759",
+    "start_time": "2025-06-20T14:05:52.769759",
+    "end_time": "2025-06-20T14:05:53.361290",
+    "total_duration": 0.591531,
+    "results": {
+      "Modelos de Base de Datos": {
+        "total_tests": 15,
+        "passed_tests": 12,
+        "failed_tests": 0,
+        "error_tests": 3,
+        "success_rate": 80.0,
+        "duration": 0.020911
+      },
+      "Aplicación Flask": {
+        "total_tests": 17,
+        "passed_tests": 14,
+        "failed_tests": 3,
+        "error_tests": 0,
+        "success_rate": 82.35294117647058,
+        "duration": 0.149998
+      },
+      "Integración": {
+        "total_tests": 7,
+        "passed_tests": 4,
+        "failed_tests": 3,
+        "error_tests": 0,
+        "success_rate": 57.14285714285714,
+        "duration": 0.420622
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-20T14:06:48.432147",
+    "start_time": "2025-06-20T14:06:48.432147",
+    "end_time": "2025-06-20T14:06:48.781442",
+    "total_duration": 0.349295,
+    "results": {
+      "Modelos de Base de Datos": {
+        "total_tests": 15,
+        "passed_tests": 12,
+        "failed_tests": 0,
+        "error_tests": 3,
+        "success_rate": 80.0,
+        "duration": 0.021942
+      },
+      "Aplicación Flask": {
+        "total_tests": 17,
+        "passed_tests": 14,
+        "failed_tests": 3,
+        "error_tests": 0,
+        "success_rate": 82.35294117647058,
+        "duration": 0.153839
+      },
+      "Integración": {
+        "total_tests": 7,
+        "passed_tests": 4,
+        "failed_tests": 3,
+        "error_tests": 0,
+        "success_rate": 57.14285714285714,
+        "duration": 0.173514
+      }
+    }
+  }
+]

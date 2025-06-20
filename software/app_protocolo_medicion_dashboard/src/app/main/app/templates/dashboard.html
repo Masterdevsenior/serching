@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Protocolo Medición</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --primary-color: #3498db;
+        --secondary-color: #2c3e50;
+        --success-color: #27ae60;
+        --warning-color: #f39c12;
+        --danger-color: #e74c3c;
+        --light-bg: #f8f9fa;
+        --dark-bg: #2c3e50;
+      }
+
+      body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .dashboard-container {
+        padding: 20px 0;
+      }
+
+      .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+
+      .card-header {
+        background: linear-gradient(135deg, var(--primary-color), #2980b9);
+        color: white;
+        border-radius: 15px 15px 0 0 !important;
+        border: none;
+        padding: 20px;
+      }
+
+      .stats-card {
+        text-align: center;
+        padding: 30px 20px;
+      }
+
+      .stats-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--secondary-color);
+        margin-bottom: 10px;
+      }
+
+      .stats-label {
+        font-size: 1.1rem;
+        color: #666;
+        font-weight: 500;
+      }
+
+      .chart-container {
+        position: relative;
+        height: 300px;
+        margin: 20px 0;
+      }
+
+      .recent-table {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+      }
+
+      .recent-table .table {
+        margin-bottom: 0;
+      }
+
+      .recent-table th {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        font-weight: 600;
+      }
+
+      .recent-table td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        vertical-align: middle;
+      }
+
+      .badge-riesgo {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .badge-bajo {
+        background-color: var(--success-color);
+        color: white;
+      }
+      .badge-medio {
+        background-color: var(--warning-color);
+        color: white;
+      }
+      .badge-alto {
+        background-color: var(--danger-color);
+        color: white;
+      }
+
+      .navbar {
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-dashboard {
+        background: linear-gradient(135deg, var(--primary-color), #2980b9);
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn-dashboard:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        color: white;
+      }
+
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+      }
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid var(--primary-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+      }
+
+      .empty-state h5 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      @media (max-width: 768px) {
+        .stats-number {
+          font-size: 2rem;
+        }
+
+        .chart-container {
+          height: 250px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="/">
+          Protocolo Medición Dashboard
+        </a>
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="/">Nuevo Registro</a>
+          <a class="nav-link" href="/registros">Ver Registros</a>
+          <a class="nav-link active" href="/dashboard">Dashboard</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container dashboard-container">
+      <!-- Título del Dashboard -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <h1 class="text-white text-center mb-4">
+            Dashboard de Protocolo de Medición
+          </h1>
+        </div>
+      </div>
+
+      <!-- Tarjetas de Estadísticas -->
+      <div class="row mb-4" id="statsCards">
+        <div class="col-md-3 mb-3">
+          <div class="card stats-card">
+            <div class="stats-number" id="totalRegistros">-</div>
+            <div class="stats-label">Total Registros</div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="card stats-card">
+            <div class="stats-number" id="registros7Dias">-</div>
+            <div class="stats-label">Últimos 7 días</div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="card stats-card">
+            <div class="stats-number" id="promedioEdad">-</div>
+            <div class="stats-label">Edad Promedio</div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="card stats-card">
+            <div class="stats-number" id="promedioPeso">-</div>
+            <div class="stats-label">Peso Promedio (kg)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráficos -->
+      <div class="row mb-4">
+        <!-- Gráfico de Registros por Fecha -->
+        <div class="col-lg-8 mb-3">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Registros por Fecha (Últimos 30 días)</h5>
+            </div>
+            <div class="card-body">
+              <div class="chart-container">
+                <canvas id="registrosChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gráfico de Distribución por Género -->
+        <div class="col-lg-4 mb-3">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Distribución por Género</h5>
+            </div>
+            <div class="card-body">
+              <div class="chart-container">
+                <canvas id="generoChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <!-- Gráfico de Ejercicios -->
+        <div class="col-lg-6 mb-3">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Tipos de Ejercicio</h5>
+            </div>
+            <div class="card-body">
+              <div class="chart-container">
+                <canvas id="ejerciciosChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gráfico de Nivel de Riesgo -->
+        <div class="col-lg-6 mb-3">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Nivel de Riesgo</h5>
+            </div>
+            <div class="card-body">
+              <div class="chart-container">
+                <canvas id="riesgoChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registros Recientes -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Registros Recientes</h5>
+            </div>
+            <div class="card-body p-0">
+              <div class="recent-table">
+                <div class="loading" id="recentLoading">
+                  <div class="spinner"></div>
+                </div>
+                <table
+                  class="table table-hover"
+                  id="recentTable"
+                  style="display: none"
+                >
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Fecha</th>
+                      <th>Nombre</th>
+                      <th>Edad</th>
+                      <th>Género</th>
+                      <th>Ejercicio</th>
+                      <th>Riesgo</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recentTableBody"></tbody>
+                </table>
+                <div class="empty-state" id="recentEmpty" style="display: none">
+                  <h5>No hay registros recientes</h5>
+                  <p>
+                    Los registros aparecerán aquí una vez que se agreguen datos
+                    al sistema.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Variables globales para los gráficos
+      let registrosChart, generoChart, ejerciciosChart, riesgoChart;
+
+      // Función para cargar estadísticas
+      async function cargarEstadisticas() {
+        try {
+          const response = await fetch("/api/dashboard/stats");
+          const data = await response.json();
+
+          if (response.ok) {
+            document.getElementById("totalRegistros").textContent =
+              data.total_registros;
+            document.getElementById("registros7Dias").textContent =
+              data.registros_ultimos_7_dias;
+            document.getElementById("promedioEdad").textContent =
+              data.promedio_edad;
+            document.getElementById("promedioPeso").textContent =
+              data.promedio_peso;
+
+            // Crear gráficos
+            crearGraficoGenero(data.distribucion_genero);
+            crearGraficoEjercicios(data.distribucion_ejercicios);
+            crearGraficoRiesgo(data.distribucion_riesgo);
+          } else {
+            console.error("Error al cargar estadísticas:", data.error);
+          }
+        } catch (error) {
+          console.error("Error al cargar estadísticas:", error);
+        }
+      }
+
+      // Función para cargar datos de gráficos
+      async function cargarDatosGraficos() {
+        try {
+          const response = await fetch("/api/dashboard/chart-data");
+          const data = await response.json();
+
+          if (response.ok) {
+            crearGraficoRegistros(data.registros_por_fecha);
+          } else {
+            console.error("Error al cargar datos de gráficos:", data.error);
+          }
+        } catch (error) {
+          console.error("Error al cargar datos de gráficos:", error);
+        }
+      }
+
+      // Función para cargar registros recientes
+      async function cargarRegistrosRecientes() {
+        try {
+          const response = await fetch("/api/dashboard/recent-registros");
+          const data = await response.json();
+
+          const tableBody = document.getElementById("recentTableBody");
+          const loading = document.getElementById("recentLoading");
+          const table = document.getElementById("recentTable");
+          const empty = document.getElementById("recentEmpty");
+
+          loading.style.display = "none";
+
+          if (data.length > 0) {
+            table.style.display = "table";
+            tableBody.innerHTML = "";
+
+            data.forEach((registro) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                            <td>${registro.id}</td>
+                            <td>${registro.fecha_hora}</td>
+                            <td>${registro.nombre_completo}</td>
+                            <td>${registro.edad}</td>
+                            <td>${registro.genero}</td>
+                            <td>${registro.tipo_ejercicio}</td>
+                            <td><span class="badge badge-${getRiesgoClass(
+                              registro.nivel_riesgo
+                            )}">${registro.nivel_riesgo}</span></td>
+                        `;
+              tableBody.appendChild(row);
+            });
+          } else {
+            empty.style.display = "block";
+          }
+        } catch (error) {
+          console.error("Error al cargar registros recientes:", error);
+        }
+      }
+
+      // Función para obtener clase CSS del nivel de riesgo
+      function getRiesgoClass(riesgo) {
+        switch (riesgo.toLowerCase()) {
+          case "bajo":
+            return "bajo";
+          case "medio":
+            return "medio";
+          case "alto":
+            return "alto";
+          default:
+            return "medio";
+        }
+      }
+
+      // Función para crear gráfico de registros por fecha
+      function crearGraficoRegistros(data) {
+        const ctx = document.getElementById("registrosChart").getContext("2d");
+
+        if (registrosChart) {
+          registrosChart.destroy();
+        }
+
+        registrosChart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: data.map((item) => item.fecha),
+            datasets: [
+              {
+                label: "Registros",
+                data: data.map((item) => item.cantidad),
+                borderColor: "#3498db",
+                backgroundColor: "rgba(52, 152, 219, 0.1)",
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                },
+              },
+            },
+          },
+        });
+      }
+
+      // Función para crear gráfico de género
+      function crearGraficoGenero(data) {
+        const ctx = document.getElementById("generoChart").getContext("2d");
+
+        if (generoChart) {
+          generoChart.destroy();
+        }
+
+        const labels = Object.keys(data);
+        const values = Object.values(data);
+        const colors = ["#3498db", "#e74c3c", "#f39c12"];
+
+        generoChart = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                data: values,
+                backgroundColor: colors.slice(0, labels.length),
+                borderWidth: 0,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: "bottom",
+              },
+            },
+          },
+        });
+      }
+
+      // Función para crear gráfico de ejercicios
+      function crearGraficoEjercicios(data) {
+        const ctx = document.getElementById("ejerciciosChart").getContext("2d");
+
+        if (ejerciciosChart) {
+          ejerciciosChart.destroy();
+        }
+
+        const labels = Object.keys(data);
+        const values = Object.values(data);
+
+        ejerciciosChart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Cantidad",
+                data: values,
+                backgroundColor: "#27ae60",
+                borderColor: "#27ae60",
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                },
+              },
+            },
+          },
+        });
+      }
+
+      // Función para crear gráfico de riesgo
+      function crearGraficoRiesgo(data) {
+        const ctx = document.getElementById("riesgoChart").getContext("2d");
+
+        if (riesgoChart) {
+          riesgoChart.destroy();
+        }
+
+        const labels = Object.keys(data);
+        const values = Object.values(data);
+        const colors = ["#27ae60", "#f39c12", "#e74c3c"];
+
+        riesgoChart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Cantidad",
+                data: values,
+                backgroundColor: colors.slice(0, labels.length),
+                borderColor: colors.slice(0, labels.length),
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                },
+              },
+            },
+          },
+        });
+      }
+
+      // Función para actualizar dashboard
+      async function actualizarDashboard() {
+        await Promise.all([
+          cargarEstadisticas(),
+          cargarDatosGraficos(),
+          cargarRegistrosRecientes(),
+        ]);
+      }
+
+      // Inicializar dashboard cuando se carga la página
+      document.addEventListener("DOMContentLoaded", function () {
+        actualizarDashboard();
+
+        // Actualizar cada 5 minutos
+        setInterval(actualizarDashboard, 300000);
+      });
+    </script>
+  </body>
+</html>
