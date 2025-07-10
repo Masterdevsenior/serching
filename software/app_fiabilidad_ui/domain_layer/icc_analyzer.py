@@ -163,12 +163,20 @@ class ICCAnalyzer:
         variables_alto_icc = len(df_alto_icc)
         porcentaje_alto_icc = (variables_alto_icc / len(correlaciones_validas)) * 100 if len(correlaciones_validas) > 0 else 0
         
+        # Calcular estadísticas de variables de alto ICC
+        correlacion_promedio_alto_icc = df_alto_icc['correlacion'].mean() if len(df_alto_icc) > 0 else 0.0
+        correlacion_minima_alto_icc = df_alto_icc['correlacion'].min() if len(df_alto_icc) > 0 else 0.0
+        correlacion_maxima_alto_icc = df_alto_icc['correlacion'].max() if len(df_alto_icc) > 0 else 0.0
+        
         return {
             'total_variables': len(df_resultados),
             'variables_validas': len(correlaciones_validas),
             'variables_alto_icc': variables_alto_icc,
             'porcentaje_alto_icc': porcentaje_alto_icc,
             'correlacion_promedio': correlaciones_validas.mean(),
+            'correlacion_promedio_alto_icc': correlacion_promedio_alto_icc,
+            'correlacion_minima_alto_icc': correlacion_minima_alto_icc,
+            'correlacion_maxima_alto_icc': correlacion_maxima_alto_icc,
             'correlacion_mediana': correlaciones_validas.median(),
             'correlacion_minima': correlaciones_validas.min(),
             'correlacion_maxima': correlaciones_validas.max()

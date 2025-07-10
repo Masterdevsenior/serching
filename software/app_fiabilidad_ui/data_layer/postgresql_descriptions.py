@@ -106,6 +106,8 @@ class PostgreSQLVariableDescriptions:
                         descriptions[column_name] = enriched_description
                     
                     self.logger.info(f"Cargadas {len(descriptions)} descripciones desde PostgreSQL")
+                    # ACTUALIZACIÓN: Guardar en el cache de la instancia
+                    self.descriptions_cache = descriptions
                     return descriptions
                     
         except Exception as e:

@@ -7,11 +7,29 @@ import os
 import sys
 from dotenv import load_dotenv
 load_dotenv()
+import io
 
 # Agregar el directorio raíz al path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from application_layer.icc_service import ICCService
+
+@st.cache_resource
+def get_icc_service():
+    from application_layer.icc_service import ICCService
+    return ICCService()
+
+@st.cache_data(show_spinner=False)
+def get_resultados_icc(results, _service):
+    resultados_icc = results['results']['resultados_icc']
+    df_resultados = pd.DataFrame(resultados_icc)
+    variable_names = df_resultados['variable'].tolist()
+    descriptions = _service.get_variable_descriptions(variable_names)
+    df_resultados['descripcion'] = df_resultados['variable'].map(descriptions)
+    df_resultados['descripcion_corta'] = df_resultados['descripcion'].apply(
+        lambda x: x[:100] + "..." if len(str(x)) > 100 else str(x)
+    )
+    return df_resultados
 
 def main():
     """Función principal de la aplicación Streamlit"""
@@ -63,8 +81,7 @@ def main():
             st.info("🔗 Conectando a PostgreSQL...")
             
             # Mostrar información de conexión
-            from application_layer.icc_service import ICCService
-            service = ICCService()
+            service = get_icc_service()
             conn_info = service.postgresql_descriptions.get_connection_info()
             
             col1, col2 = st.columns(2)
@@ -139,7 +156,7 @@ def main():
     if analyze_button:
         with st.spinner("🔄 Ejecutando análisis ICC..."):
             # Inicializar servicio
-            service = ICCService()
+            service = get_icc_service()
             
             # Determinar ruta del archivo
             if uploaded_file is not None:
@@ -154,7 +171,7 @@ def main():
             results = service.run_icc_analysis(file_path, threshold, descriptions_path)
             
             if results['success']:
-                display_results(results, threshold)
+                display_results(results, threshold, service)
             else:
                 st.error(f"❌ Error en el análisis: {results['error']}")
     
@@ -207,7 +224,7 @@ def display_welcome_screen():
         - NumPy para cálculos numéricos
         """)
 
-def display_results(results, threshold):
+def display_results(results, threshold, service):
     """Muestra los resultados del análisis"""
     
     st.success("✅ Análisis completado exitosamente!")
@@ -228,33 +245,36 @@ def display_results(results, threshold):
                 st.metric("📝 Descripciones", "❌ No disponibles", help="No se cargaron descripciones de variables")
     
     # Pestañas para diferentes vistas
-    tab1, tab2, tab3, tab4 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "📈 Variables de Alto ICC", 
+        "📊 Todas las Variables",
         "📊 Estadísticas Generales", 
         "🔍 Explorar Todos los Resultados",
         "💾 Exportar Datos"
     ])
     
     with tab1:
-        display_high_icc_variables(results, threshold)
+        display_high_icc_variables(results, threshold, service)
     
     with tab2:
-        display_general_statistics(results, threshold)
+        display_all_variables_summary(results, threshold, service)
     
     with tab3:
-        display_all_results(results)
+        display_general_statistics(results, threshold)
     
     with tab4:
-        display_export_options(results)
+        display_all_results(results, service)
+    
+    with tab5:
+        display_export_options(results, service)
 
-def display_high_icc_variables(results, threshold):
+def display_high_icc_variables(results, threshold, service):
     """Muestra las variables con alto ICC"""
     
     variables_alto_icc = results['results']['variables_alto_icc']
     estadisticas = results['results']['estadisticas']
     
     # Obtener descripciones si están disponibles
-    service = ICCService()
     variable_names = [var['variable'] for var in variables_alto_icc]
     descriptions = service.get_variable_descriptions(variable_names)
     
@@ -265,14 +285,19 @@ def display_high_icc_variables(results, threshold):
         df_alto = pd.DataFrame(variables_alto_icc)
         
         # Métricas
-        col1, col2, col3, col4 = st.columns(4)
+        col1, col2, col3, col4, col5 = st.columns(5)
         with col1:
             st.metric("Variables de Alto ICC", len(variables_alto_icc))
         with col2:
-            st.metric("ICC Promedio", f"{estadisticas['correlacion_promedio']:.3f}")
+            st.metric("ICC Promedio (Alto ICC)", f"{estadisticas['correlacion_promedio_alto_icc']:.3f}", 
+                     help="Promedio ICC solo de variables con ICC > 0.9")
         with col3:
-            st.metric("ICC Máximo", f"{estadisticas['correlacion_maxima']:.3f}")
+            st.metric("ICC Mínimo (Alto ICC)", f"{estadisticas['correlacion_minima_alto_icc']:.3f}", 
+                     help="ICC mínimo de variables con ICC > 0.9")
         with col4:
+            st.metric("ICC Máximo (Alto ICC)", f"{estadisticas['correlacion_maxima_alto_icc']:.3f}", 
+                     help="ICC máximo de variables con ICC > 0.9")
+        with col5:
             st.metric("Porcentaje", f"{estadisticas['porcentaje_alto_icc']:.1f}%")
         
         # Gráfico de barras
@@ -295,13 +320,18 @@ def display_high_icc_variables(results, threshold):
         df_with_descriptions = df_alto.copy()
         df_with_descriptions['descripcion'] = df_with_descriptions['variable'].map(descriptions)
         
-        # Mostrar tabla con descripciones
+        # Truncar descripciones muy largas para mejor visualización
+        df_with_descriptions['descripcion_corta'] = df_with_descriptions['descripcion'].apply(
+            lambda x: x[:100] + "..." if len(str(x)) > 100 else str(x)
+        )
+        
+        # Mostrar tabla sin mensajes de debug
         st.dataframe(
-            df_with_descriptions[['variable', 'descripcion', 'correlacion', 'sujetos']].sort_values('correlacion', ascending=False),
+            df_with_descriptions[['variable', 'descripcion_corta', 'correlacion', 'sujetos']].sort_values('correlacion', ascending=False),
             use_container_width=True,
             column_config={
                 "variable": st.column_config.TextColumn("Variable", width="medium"),
-                "descripcion": st.column_config.TextColumn("Descripción", width="large"),
+                "descripcion_corta": st.column_config.TextColumn("Descripción", width="large"),
                 "correlacion": st.column_config.NumberColumn("ICC", format="%.3f"),
                 "sujetos": st.column_config.NumberColumn("Sujetos", format="%d")
             }
@@ -310,6 +340,134 @@ def display_high_icc_variables(results, threshold):
     else:
         st.warning(f"⚠️ No se encontraron variables con ICC > {threshold}")
         st.info("💡 Considera reducir el umbral para ver más variables")
+
+def display_all_variables_summary(results, threshold, service):
+    """Muestra un resumen de todas las variables para comparar con las de alto ICC"""
+    
+    resultados_icc = results['results']['resultados_icc']
+    estadisticas = results['results']['estadisticas']
+    
+    # Crear DataFrame con todas las variables
+    df_todas = pd.DataFrame(resultados_icc)
+    df_todas = df_todas.dropna()  # Eliminar valores NaN
+    
+    if len(df_todas) > 0:
+        st.subheader(f"📊 Resumen de Todas las Variables")
+        
+        # Obtener descripciones si están disponibles
+        variable_names = df_todas['variable'].tolist()
+        descriptions = service.get_variable_descriptions(variable_names)
+        
+        # Métricas para todas las variables
+        col1, col2, col3, col4, col5 = st.columns(5)
+        with col1:
+            st.metric("Total Variables", len(df_todas))
+        with col2:
+            st.metric("ICC Promedio (General)", f"{estadisticas['correlacion_promedio']:.3f}", 
+                     help="Promedio ICC de todas las variables")
+        with col3:
+            st.metric("ICC Mínimo (General)", f"{estadisticas['correlacion_minima']:.3f}", 
+                     help="ICC mínimo de todas las variables")
+        with col4:
+            st.metric("ICC Máximo (General)", f"{estadisticas['correlacion_maxima']:.3f}", 
+                     help="ICC máximo de todas las variables")
+        with col5:
+            st.metric("Desv. Estándar", f"{df_todas['correlacion'].std():.3f}")
+        
+        # Gráfico de barras de todas las variables (top 20)
+        fig = px.bar(
+            df_todas.head(20).sort_values('correlacion', ascending=False),
+            x='variable',
+            y='correlacion',
+            title=f"Top 20 Variables (Todas las Variables)",
+            labels={'correlacion': 'ICC', 'variable': 'Variable'},
+            color='correlacion',
+            color_continuous_scale='plasma'
+        )
+        fig.update_layout(xaxis_tickangle=-45)
+        st.plotly_chart(fig, use_container_width=True)
+        
+        # Comparación visual entre alto ICC y todas las variables
+        variables_alto_icc = results['results']['variables_alto_icc']
+        if len(variables_alto_icc) > 0:
+            st.subheader("📊 Comparación: Alto ICC vs Todas las Variables")
+            
+            # Crear DataFrame de comparación
+            df_comparacion = pd.DataFrame({
+                'Métrica': ['Promedio', 'Mínimo', 'Máximo'],
+                'Alto ICC (>0.9)': [
+                    estadisticas['correlacion_promedio_alto_icc'],
+                    estadisticas['correlacion_minima_alto_icc'],
+                    estadisticas['correlacion_maxima_alto_icc']
+                ],
+                'Todas las Variables': [
+                    estadisticas['correlacion_promedio'],
+                    estadisticas['correlacion_minima'],
+                    estadisticas['correlacion_maxima']
+                ]
+            })
+            
+            # Gráfico de comparación
+            fig_comparacion = go.Figure()
+            
+            fig_comparacion.add_trace(go.Bar(
+                name='Alto ICC (>0.9)',
+                x=df_comparacion['Métrica'],
+                y=df_comparacion['Alto ICC (>0.9)'],
+                marker_color='#ff7f0e'
+            ))
+            
+            fig_comparacion.add_trace(go.Bar(
+                name='Todas las Variables',
+                x=df_comparacion['Métrica'],
+                y=df_comparacion['Todas las Variables'],
+                marker_color='#1f77b4'
+            ))
+            
+            fig_comparacion.update_layout(
+                title="Comparación de Métricas: Alto ICC vs Todas las Variables",
+                barmode='group',
+                yaxis_title="Valor ICC"
+            )
+            
+            st.plotly_chart(fig_comparacion, use_container_width=True)
+            
+            # Tabla de comparación
+            st.dataframe(
+                df_comparacion,
+                use_container_width=True,
+                column_config={
+                    "Métrica": st.column_config.TextColumn("Métrica", width="medium"),
+                    "Alto ICC (>0.9)": st.column_config.NumberColumn("Alto ICC (>0.9)", format="%.3f"),
+                    "Todas las Variables": st.column_config.NumberColumn("Todas las Variables", format="%.3f")
+                }
+            )
+        
+        # Tabla de todas las variables con descripciones
+        st.subheader("📋 Lista Completa de Todas las Variables")
+        
+        # Agregar descripciones al DataFrame
+        df_todas['descripcion'] = df_todas['variable'].map(descriptions)
+        
+        # Truncar descripciones muy largas para mejor visualización
+        df_todas['descripcion_corta'] = df_todas['descripcion'].apply(
+            lambda x: x[:100] + "..." if len(str(x)) > 100 else str(x)
+        )
+        
+        # Mostrar tabla sin mensajes de debug
+        st.dataframe(
+            df_todas[['variable', 'descripcion_corta', 'correlacion', 'sujetos']].sort_values('correlacion', ascending=False),
+            use_container_width=True,
+            column_config={
+                "variable": st.column_config.TextColumn("Variable", width="medium"),
+                "descripcion_corta": st.column_config.TextColumn("Descripción", width="large"),
+                "correlacion": st.column_config.NumberColumn("ICC", format="%.3f"),
+                "sujetos": st.column_config.NumberColumn("Sujetos", format="%d")
+            }
+        )
+        
+    else:
+        st.warning("⚠️ No hay variables válidas para mostrar")
 
 def display_general_statistics(results, threshold):
     """Muestra estadísticas generales"""
@@ -332,7 +490,8 @@ def display_general_statistics(results, threshold):
         st.metric("Variables de Alto ICC", estadisticas['variables_alto_icc'])
         st.metric("Porcentaje de Alto ICC", f"{estadisticas['porcentaje_alto_icc']:.1f}%")
         st.metric("Sujetos Completos", data_info['sujetos_completos'])
-        st.metric("Correlación Promedio", f"{estadisticas['correlacion_promedio']:.3f}")
+        st.metric("ICC Promedio (General)", f"{estadisticas['correlacion_promedio']:.3f}", 
+                 help="Promedio ICC de todas las variables")
     
     # Gráfico de distribución de ICC
     resultados_icc = results['results']['resultados_icc']
@@ -354,9 +513,10 @@ def display_general_statistics(results, threshold):
         # Estadísticas descriptivas
         st.subheader("📈 Estadísticas Descriptivas")
         stats_df = pd.DataFrame({
-            'Métrica': ['Promedio', 'Mediana', 'Mínimo', 'Máximo', 'Desv. Estándar'],
+            'Métrica': ['Promedio (General)', 'Promedio (Alto ICC)', 'Mediana', 'Mínimo', 'Máximo', 'Desv. Estándar'],
             'Valor': [
                 f"{estadisticas['correlacion_promedio']:.3f}",
+                f"{estadisticas['correlacion_promedio_alto_icc']:.3f}",
                 f"{estadisticas['correlacion_mediana']:.3f}",
                 f"{estadisticas['correlacion_minima']:.3f}",
                 f"{estadisticas['correlacion_maxima']:.3f}",
@@ -364,118 +524,76 @@ def display_general_statistics(results, threshold):
             ]
         })
         st.dataframe(stats_df, use_container_width=True)
+        
+        # Comparación visual de promedios
+        if estadisticas['variables_alto_icc'] > 0:
+            st.subheader("📊 Comparación de Promedios")
+            fig_comparison = go.Figure()
+            
+            fig_comparison.add_trace(go.Bar(
+                x=['Promedio General', 'Promedio Alto ICC'],
+                y=[estadisticas['correlacion_promedio'], estadisticas['correlacion_promedio_alto_icc']],
+                text=[f"{estadisticas['correlacion_promedio']:.3f}", f"{estadisticas['correlacion_promedio_alto_icc']:.3f}"],
+                textposition='auto',
+                marker_color=['#1f77b4', '#ff7f0e']
+            ))
+            
+            fig_comparison.update_layout(
+                title="Comparación de Promedios ICC",
+                yaxis_title="Valor ICC",
+                showlegend=False
+            )
+            
+            st.plotly_chart(fig_comparison, use_container_width=True)
 
-def display_all_results(results):
+def display_all_results(results, service):
     """Muestra todos los resultados en formato explorable"""
     
     st.subheader("🔍 Explorar Todos los Resultados")
     
-    resultados_icc = results['results']['resultados_icc']
-    df_resultados = pd.DataFrame(resultados_icc)
-    
-    # Obtener descripciones si están disponibles
-    service = ICCService()
-    variable_names = df_resultados['variable'].tolist()
-    descriptions = service.get_variable_descriptions(variable_names)
-    
-    # Agregar descripciones al DataFrame
-    df_resultados['descripcion'] = df_resultados['variable'].map(descriptions)
+    df_resultados = get_resultados_icc(results, service)
     
     # Validar que hay datos para mostrar
     if len(df_resultados) == 0:
         st.warning("⚠️ No hay resultados para mostrar")
         return
     
-    # Obtener valores mínimos y máximos con validaciones
-    correlacion_min = float(df_resultados['correlacion'].min())
-    correlacion_max = float(df_resultados['correlacion'].max())
-    sujetos_min = int(df_resultados['sujetos'].min())
-    sujetos_max = int(df_resultados['sujetos'].max())
+    st.info(f"📊 Mostrando {len(df_resultados)} variables")
     
-    # Ajustar valores si son iguales para evitar error en slider
-    if correlacion_min == correlacion_max:
-        correlacion_min = max(0.0, correlacion_min - 0.01)
-        correlacion_max = min(1.0, correlacion_max + 0.01)
-    
-    if sujetos_min == sujetos_max:
-        sujetos_min = max(1, sujetos_min - 1)
-        sujetos_max = sujetos_max + 1
-    
-    # Filtros
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        min_icc = st.slider(
-            "ICC mínimo:",
-            min_value=correlacion_min,
-            max_value=correlacion_max,
-            value=correlacion_min,
-            step=0.01
-        )
-    
-    with col2:
-        min_subjects = st.slider(
-            "Mínimo de sujetos:",
-            min_value=sujetos_min,
-            max_value=sujetos_max,
-            value=sujetos_min,
-            step=1
-        )
-    
-    # Aplicar filtros
-    df_filtrado = df_resultados[
-        (df_resultados['correlacion'] >= min_icc) &
-        (df_resultados['sujetos'] >= min_subjects)
-    ].sort_values('correlacion', ascending=False)
-    
-    st.info(f"📊 Mostrando {len(df_filtrado)} de {len(df_resultados)} variables")
-    
-    # Tabla con filtros aplicados y descripciones
+    # Tabla sin sliders ni filtros
     st.dataframe(
-        df_filtrado,
+        df_resultados[['variable', 'descripcion_corta', 'correlacion', 'sujetos']].rename(columns={"descripcion_corta": "Descripción"}),
         use_container_width=True,
         column_config={
             "variable": st.column_config.TextColumn("Variable", width="medium"),
-            "descripcion": st.column_config.TextColumn("Descripción", width="large"),
+            "Descripción": st.column_config.TextColumn("Descripción", width="large"),
             "correlacion": st.column_config.NumberColumn("ICC", format="%.3f"),
             "sujetos": st.column_config.NumberColumn("Sujetos", format="%d")
         }
     )
 
-def display_export_options(results):
+def display_export_options(results, service):
     """Muestra opciones de exportación"""
-    
     st.subheader("💾 Exportar Resultados")
-    
-    # Servicio para guardar
-    service = ICCService()
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        if st.button("📥 Descargar Todos los Resultados", type="primary"):
-            save_result = service.save_results(results)
-            if save_result['success']:
-                st.success("✅ Archivos guardados exitosamente!")
-                for file_type, filename in save_result['files'].items():
-                    st.info(f"📄 {file_type}: {filename}")
-            else:
-                st.error(f"❌ Error al guardar: {save_result['error']}")
-    
-    with col2:
-        if st.button("📊 Descargar Variables de Alto ICC"):
-            if len(results['results']['variables_alto_icc']) > 0:
-                df_alto = pd.DataFrame(results['results']['variables_alto_icc'])
-                csv = df_alto.to_csv(index=False)
-                st.download_button(
-                    label="📥 Descargar CSV",
-                    data=csv,
-                    file_name="variables_alto_icc.csv",
-                    mime="text/csv"
-                )
-            else:
-                st.warning("⚠️ No hay variables de alto ICC para descargar")
-    
+
+    # Directorio de exportación RELATIVO al workspace de Streamlit
+    export_dir = os.path.join("data", "ICC")
+    os.makedirs(export_dir, exist_ok=True)
+
+    # DataFrame completo con descripciones
+    df_completo = get_resultados_icc(results, service)
+    # DataFrame de alto ICC
+    df_alto = df_completo[df_completo['correlacion'] >= results['results']['estadisticas']['correlacion_minima_alto_icc']] if 'correlacion_minima_alto_icc' in results['results']['estadisticas'] else df_completo.copy()
+
+    # Guardar archivos en disco SOLO en la carpeta relativa
+    completo_path = os.path.join(export_dir, "resultados_icc_completo.csv")
+    alto_path = os.path.join(export_dir, "resultados_icc_alto.csv")
+    df_completo.to_csv(completo_path, index=False)
+    df_alto.to_csv(alto_path, index=False)
+
+    st.success("Archivo completo guardado en ./data/ICC/resultados_icc_completo.csv")
+    st.success("Archivo de alto ICC guardado en ./data/ICC/resultados_icc_alto.csv")
+
     # Información del archivo procesado
     st.subheader("📁 Información del Archivo")
     st.info(f"**Archivo procesado:** {results['file_path']}")

@@ -1,0 +1,274 @@
+variable,correlacion,sujetos,descripcion,descripcion_corta
+AnkleFlexExtL.angle,0.5711325928959246,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+AnkleFlexExtL.angular_acc,-0.8299303429594495,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+AnkleFlexExtL.angular_v,-0.9110147480620568,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+AnkleFlexExtR.angle,0.668981599138646,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+AnkleFlexExtR.angular_acc,-0.3530773221093522,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+AnkleFlexExtR.angular_v,-0.29971006990754,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+AnkleProSupL.angle,0.9313825871888246,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+AnkleProSupL.angular_acc,-0.45422299575379177,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+AnkleProSupL.angular_v,-0.855023061949894,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+AnkleProSupR.angle,0.7982941355460602,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+AnkleProSupR.angular_acc,-0.1770892970903248,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+AnkleProSupR.angular_v,-0.96749674018697,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+ElbowFlexExtL.angle,0.8490600545960487,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+ElbowFlexExtL.angular_acc,0.9217646063785989,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+ElbowFlexExtL.angular_v,0.8417010724816757,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+ElbowFlexExtR.angle,0.5944437057230959,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+ElbowFlexExtR.angular_acc,0.9415068344083767,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+ElbowFlexExtR.angular_v,0.8791981760243709,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+ForearmProSupL.angle,0.39914432851148574,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+ForearmProSupL.angular_acc,0.4921117087975381,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+ForearmProSupL.angular_v,0.9233924423592325,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+ForearmProSupR.angle,0.7711949993253938,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+ForearmProSupR.angular_acc,-0.5704474543437356,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+ForearmProSupR.angular_v,-0.07536979202403805,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+HipAddAbdL.angle,0.8621059888341821,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+HipAddAbdL.angular_acc,-0.30478933542568176,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+HipAddAbdL.angular_v,-0.7262126194987742,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+HipAddAbdR.angle,0.8258779723858836,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+HipAddAbdR.angular_acc,-0.2176402033298048,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+HipAddAbdR.angular_v,-0.6221139540411347,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+HipFlexExtL.angle,0.688839959819064,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+HipFlexExtL.angular_acc,-0.7258428016188073,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+HipFlexExtL.angular_v,-0.9039693269769525,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+HipFlexExtR.angle,0.6170375389861725,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+HipFlexExtR.angular_acc,-0.20838303599103192,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+HipFlexExtR.angular_v,-0.814805283282425,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+HipRotL.angle,0.9419168627859159,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+HipRotL.angular_acc,-0.7262130225964832,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+HipRotL.angular_v,-0.47563694217639363,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+HipRotR.angle,0.7980960236193313,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+HipRotR.angular_acc,0.5911059288234616,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+HipRotR.angular_v,-0.14579428878425935,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+KneeFlexExtL.angle,-0.24045428843280914,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+KneeFlexExtL.angular_acc,-0.7268924018292681,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+KneeFlexExtL.angular_v,-0.6645936366185791,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+KneeFlexExtR.angle,0.021690626893471752,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+KneeFlexExtR.angular_acc,-0.17799976265015424,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+KneeFlexExtR.angular_v,-0.6436420881156227,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+LowerThoraxFlexExt.angle,0.28219731366502365,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+LowerThoraxFlexExt.angular_acc,-0.3499186411540736,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+LowerThoraxFlexExt.angular_v,-0.12778047720010738,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+LowerThoraxLatFlex.angle,0.7352972552496536,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+LowerThoraxLatFlex.angular_acc,-0.8673333467240986,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+LowerThoraxLatFlex.angular_v,-0.8617075204723043,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+LowerThoraxRot.angle,0.7777771008776426,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+LowerThoraxRot.angular_acc,-0.49975012010858827,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+LowerThoraxRot.angular_v,-0.8533886356763534,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+LumbarFlexExt.angle,0.13785019742975393,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+LumbarFlexExt.angular_acc,-0.35224516498249836,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+LumbarFlexExt.angular_v,-0.1128449550205945,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+LumbarLatFlex.angle,0.7796231304922657,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+LumbarLatFlex.angular_acc,-0.8673571265938285,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+LumbarLatFlex.angular_v,-0.8140474826893994,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+LumbarRot.angle,0.7347780585223724,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+LumbarRot.angular_acc,-0.5963656962183446,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+LumbarRot.angular_v,-0.929281635708634,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+PelvisList.angle,0.6435862282234805,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+PelvisList.angular_acc,0.11794796688487044,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+PelvisList.angular_v,-0.4337744925804907,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+PelvisRotation.angle,0.4631429371293632,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+PelvisRotation.angular_acc,-0.4299823857684923,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+PelvisRotation.angular_v,-0.7828525594788935,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+PelvisTilt.angle,0.8049011630714643,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+PelvisTilt.angular_acc,-0.7366715579578664,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+PelvisTilt.angular_v,-0.6494147532508552,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+ScapulaDeprElevL.angle,0.7593490546847705,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+ScapulaDeprElevL.angular_acc,-0.6746836104187072,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+ScapulaDeprElevL.angular_v,-0.369441190631149,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+ScapulaDeprElevR.angle,0.9630869870072286,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+ScapulaDeprElevR.angular_acc,-0.2692235132385758,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+ScapulaDeprElevR.angular_v,-0.8009658933857581,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+ScapulaProtrRetrL.angle,-0.579233593185644,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+ScapulaProtrRetrL.angular_acc,0.10628335974954199,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+ScapulaProtrRetrL.angular_v,-0.24893284496307885,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+ScapulaProtrRetrR.angle,-0.2843919126793931,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+ScapulaProtrRetrR.angular_acc,-0.42946835331735456,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+ScapulaProtrRetrR.angular_v,-0.8376111309785305,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+ShoulderAddAbdL.angle,-0.6177417850662867,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+ShoulderAddAbdL.angular_acc,-0.30003706792276963,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+ShoulderAddAbdL.angular_v,-0.8388473263036544,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+ShoulderAddAbdR.angle,-0.37085016248668845,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+ShoulderAddAbdR.angular_acc,-0.6274409307877878,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+ShoulderAddAbdR.angular_v,-0.8157487747670208,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+ShoulderFlexExtL.angle,0.6064855923104533,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+ShoulderFlexExtL.angular_acc,-0.19316814048682168,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+ShoulderFlexExtL.angular_v,-0.4697936890456354,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+ShoulderFlexExtR.angle,0.44250523883295184,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+ShoulderFlexExtR.angular_acc,-0.00011287942284585002,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+ShoulderFlexExtR.angular_v,-0.6502142726276186,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+ShoulderRotL.angle,0.6238774144841653,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+ShoulderRotL.angular_acc,-0.017020318291187463,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+ShoulderRotL.angular_v,0.2893994555761716,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+ShoulderRotR.angle,0.8894619421277511,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+ShoulderRotR.angular_acc,-0.4437418505384118,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+ShoulderRotR.angular_v,-0.37139758149183183,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+UpperThoraxFlexExt.angle,0.3619747333930207,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+UpperThoraxFlexExt.angular_acc,-0.361177719823254,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+UpperThoraxFlexExt.angular_v,-0.13550835910197526,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+UpperThoraxLatFlex.angle,0.8720724425480847,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+UpperThoraxLatFlex.angular_acc,-0.907364335927219,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+UpperThoraxLatFlex.angular_v,-0.8506492293230667,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+UpperThoraxRot.angle,0.8285258692852986,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+UpperThoraxRot.angular_acc,-0.23772011250450276,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+UpperThoraxRot.angular_v,-0.7987236942333139,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+WristDeviationL.angle,0.6595526719254402,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+WristDeviationL.angular_acc,-0.21353985279713172,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+WristDeviationL.angular_v,-0.5441310166150505,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+WristDeviationR.angle,0.8065068543254225,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+WristDeviationR.angular_acc,-0.49793373477437886,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+WristDeviationR.angular_v,-0.6202872446989142,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+WristFlexExtL.angle,0.8686818127492408,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+WristFlexExtL.angular_acc,0.19706391923879396,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+WristFlexExtL.angular_v,0.4585604203672531,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+WristFlexExtR.angle,0.9123220031856143,5,"ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes.","ángulo (angle): Ángulo articular en grados (°), entre segmentos óseos adyacentes."
+WristFlexExtR.angular_acc,-0.30472514593701666,5,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo al cuadrado (°/s²).,aceleración angular (angular acceleration): Aceleración del cambio de ángulo en grados por segundo a...
+WristFlexExtR.angular_v,-0.1346053287529839,5,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).,velocidad angular (angular velocity): Velocidad de cambio de ángulo en grados por segundo (°/s).
+frame_number,0.9848459438329222,5,número de fotograma (frame number): Contador incremental que identifica el orden de cada fotograma procesado.,número de fotograma (frame number): Contador incremental que identifica el orden de cada fotograma p...
+frame_timestamp,0.988775648208993,5,marca de tiempo del fotograma (frame timestamp): Fecha y hora exactas de captura de cada frame.,marca de tiempo del fotograma (frame timestamp): Fecha y hora exactas de captura de cada frame.
+head.position.x,0.9688647479977593,5,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).
+head.position.y,0.5245179587930274,5,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).
+head.position.z,0.9966314322864801,5,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).
+head.rotation.w,0.9941191746725428,5,head.rotation.w,head.rotation.w
+head.rotation.x,0.592594619398857,5,head.rotation.x,head.rotation.x
+head.rotation.y,0.9788806085339812,5,head.rotation.y,head.rotation.y
+head.rotation.z,0.9827484330863344,5,head.rotation.z,head.rotation.z
+hips.position.x,0.9484696702961732,5,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).
+hips.position.y,0.364060421696293,5,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).
+hips.position.z,0.9951187917820586,5,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).
+hips.rotation.w,0.995553835290575,5,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.
+hips.rotation.x,0.8912745625772065,5,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.
+hips.rotation.y,0.9786409988401502,5,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.
+hips.rotation.z,0.7327303195196763,5,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.
+left_foot.contact,0.9279790367011442,5,contacto (contact): Indicador (0/1) de si la parte está en contacto con el suelo.,contacto (contact): Indicador (0/1) de si la parte está en contacto con el suelo.
+left_foot.position.x,0.9686304092595611,5,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).
+left_foot.position.y,0.7384754717072941,5,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).
+left_foot.position.z,0.995593738928144,5,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).
+left_foot.rotation.w,0.9952621448359193,5,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.
+left_foot.rotation.x,0.9583967592026207,5,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.
+left_foot.rotation.y,0.9711665570190053,5,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.
+left_foot.rotation.z,0.8959418390290427,5,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.
+left_hand.position.x,0.969043351022991,5,left_hand.position.x,left_hand.position.x
+left_hand.position.y,0.5491799604478456,5,left_hand.position.y,left_hand.position.y
+left_hand.position.z,0.9987231758799966,5,left_hand.position.z,left_hand.position.z
+left_hand.rotation.w,0.9971924663957683,5,left_hand.rotation.w,left_hand.rotation.w
+left_hand.rotation.x,0.7358664749213255,5,left_hand.rotation.x,left_hand.rotation.x
+left_hand.rotation.y,0.9161705559969507,5,left_hand.rotation.y,left_hand.rotation.y
+left_hand.rotation.z,0.9276380732022506,5,left_hand.rotation.z,left_hand.rotation.z
+left_lower_arm.position.x,0.975762030800936,5,left_lower_arm.position.x,left_lower_arm.position.x
+left_lower_arm.position.y,0.44430660658749715,5,left_lower_arm.position.y,left_lower_arm.position.y
+left_lower_arm.position.z,0.998049137538686,5,left_lower_arm.position.z,left_lower_arm.position.z
+left_lower_arm.rotation.w,0.9976508066895521,5,left_lower_arm.rotation.w,left_lower_arm.rotation.w
+left_lower_arm.rotation.x,0.7293105322236609,5,left_lower_arm.rotation.x,left_lower_arm.rotation.x
+left_lower_arm.rotation.y,0.9225904159222351,5,left_lower_arm.rotation.y,left_lower_arm.rotation.y
+left_lower_arm.rotation.z,0.7026407202198485,5,left_lower_arm.rotation.z,left_lower_arm.rotation.z
+left_lower_leg.position.x,0.9795934671105773,5,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).
+left_lower_leg.position.y,0.8532191225813702,5,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).
+left_lower_leg.position.z,0.9987264791473732,5,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).
+left_lower_leg.rotation.w,0.9924789631108809,5,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.
+left_lower_leg.rotation.x,0.10104274393026784,5,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.
+left_lower_leg.rotation.y,0.9256011215443293,5,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.
+left_lower_leg.rotation.z,0.9299850596019034,5,left_lower_leg.rotation.z,left_lower_leg.rotation.z
+left_shoulder.position.x,0.9608411904185385,5,left_shoulder.position.x,left_shoulder.position.x
+left_shoulder.position.y,0.40984136736121,5,left_shoulder.position.y,left_shoulder.position.y
+left_shoulder.position.z,0.9992438069433328,5,left_shoulder.position.z,left_shoulder.position.z
+left_shoulder.rotation.w,0.982949081970991,5,left_shoulder.rotation.w,left_shoulder.rotation.w
+left_shoulder.rotation.x,0.5458895613159129,5,left_shoulder.rotation.x,left_shoulder.rotation.x
+left_shoulder.rotation.y,0.9791296090325198,5,left_shoulder.rotation.y,left_shoulder.rotation.y
+left_shoulder.rotation.z,0.9863978399619567,5,left_shoulder.rotation.z,left_shoulder.rotation.z
+left_upper_arm.position.x,0.9872844915552254,5,left_upper_arm.position.x,left_upper_arm.position.x
+left_upper_arm.position.y,0.4325999143470439,5,left_upper_arm.position.y,left_upper_arm.position.y
+left_upper_arm.position.z,0.9957691288191124,5,left_upper_arm.position.z,left_upper_arm.position.z
+left_upper_arm.rotation.w,0.9840641596759988,5,left_upper_arm.rotation.w,left_upper_arm.rotation.w
+left_upper_arm.rotation.x,0.8581355338835867,5,left_upper_arm.rotation.x,left_upper_arm.rotation.x
+left_upper_arm.rotation.y,0.9315708766246452,5,left_upper_arm.rotation.y,left_upper_arm.rotation.y
+left_upper_arm.rotation.z,0.9351221017546187,5,left_upper_arm.rotation.z,left_upper_arm.rotation.z
+left_upper_leg.position.x,0.9530151533733279,5,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).
+left_upper_leg.position.y,0.22510042920059511,5,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).
+left_upper_leg.position.z,0.9900804331705169,5,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).
+left_upper_leg.rotation.w,0.9784936525294602,5,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.
+left_upper_leg.rotation.x,0.7955855729041886,5,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.
+left_upper_leg.rotation.y,0.9451493734396521,5,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.
+left_upper_leg.rotation.z,0.9343242532170867,5,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.
+mass_center.x,,5,desconocido (unknown): Descripción no definida; revisa.,desconocido (unknown): Descripción no definida; revisa.
+mass_center.y,,5,desconocido (unknown): Descripción no definida; revisa.,desconocido (unknown): Descripción no definida; revisa.
+mass_center.z,,5,desconocido (unknown): Descripción no definida; revisa.,desconocido (unknown): Descripción no definida; revisa.
+neck.position.x,0.9616754075149949,5,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).
+neck.position.y,0.4240295375404381,5,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).
+neck.position.z,0.9991861120678589,5,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).
+neck.rotation.w,0.9941191746725428,5,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.
+neck.rotation.x,0.592594619398857,5,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.
+neck.rotation.y,0.9788806085339812,5,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.
+neck.rotation.z,0.9827484330863344,5,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.
+right_foot.contact,0.9878562457385371,5,contacto (contact): Indicador (0/1) de si la parte está en contacto con el suelo.,contacto (contact): Indicador (0/1) de si la parte está en contacto con el suelo.
+right_foot.position.x,0.9121420199535435,5,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).
+right_foot.position.y,0.8904225384640871,5,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).
+right_foot.position.z,0.9967478221079177,5,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).
+right_foot.rotation.w,0.9865964005384383,5,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.
+right_foot.rotation.x,0.9923161846100848,5,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.
+right_foot.rotation.y,0.9585971807152517,5,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.
+right_foot.rotation.z,0.7894132599088258,5,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.
+right_hand.position.x,0.9312748759982941,5,right_hand.position.x,right_hand.position.x
+right_hand.position.y,0.60901663773242,5,right_hand.position.y,right_hand.position.y
+right_hand.position.z,0.9933040129085577,5,right_hand.position.z,right_hand.position.z
+right_hand.rotation.w,0.9009087845502313,5,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.
+right_hand.rotation.x,0.9862047264993415,5,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.
+right_hand.rotation.y,0.9751357697458429,5,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.
+right_hand.rotation.z,0.9496317820018635,5,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.
+right_lower_arm.position.x,0.9466767142869358,5,right_lower_arm.position.x,right_lower_arm.position.x
+right_lower_arm.position.y,0.528256707348455,5,right_lower_arm.position.y,right_lower_arm.position.y
+right_lower_arm.position.z,0.995076027895098,5,right_lower_arm.position.z,right_lower_arm.position.z
+right_lower_arm.rotation.w,0.914269316041952,5,right_lower_arm.rotation.w,right_lower_arm.rotation.w
+right_lower_arm.rotation.x,0.9643126320787876,5,right_lower_arm.rotation.x,right_lower_arm.rotation.x
+right_lower_arm.rotation.y,0.9754297199586052,5,right_lower_arm.rotation.y,right_lower_arm.rotation.y
+right_lower_arm.rotation.z,0.9341064165038401,5,right_lower_arm.rotation.z,right_lower_arm.rotation.z
+right_lower_leg.position.x,0.9318654568798923,5,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).
+right_lower_leg.position.y,0.8177816990824552,5,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).
+right_lower_leg.position.z,0.9955448912956215,5,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).
+right_lower_leg.rotation.w,0.9941937417215221,5,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.
+right_lower_leg.rotation.x,0.8727781394756587,5,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.
+right_lower_leg.rotation.y,0.9759890786383428,5,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.
+right_lower_leg.rotation.z,0.9547108827884108,5,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.
+right_shoulder.position.x,0.9608411904185385,5,right_shoulder.position.x,right_shoulder.position.x
+right_shoulder.position.y,0.40984136736121,5,right_shoulder.position.y,right_shoulder.position.y
+right_shoulder.position.z,0.9992438069433328,5,right_shoulder.position.z,right_shoulder.position.z
+right_shoulder.rotation.w,0.9938601524929179,5,right_shoulder.rotation.w,right_shoulder.rotation.w
+right_shoulder.rotation.x,0.8348262041865318,5,right_shoulder.rotation.x,right_shoulder.rotation.x
+right_shoulder.rotation.y,0.9783346398797239,5,right_shoulder.rotation.y,right_shoulder.rotation.y
+right_shoulder.rotation.z,0.9785768400735597,5,right_shoulder.rotation.z,right_shoulder.rotation.z
+right_upper_arm.position.x,0.9711009474518831,5,right_upper_arm.position.x,right_upper_arm.position.x
+right_upper_arm.position.y,0.5319628431871737,5,right_upper_arm.position.y,right_upper_arm.position.y
+right_upper_arm.position.z,0.9934989365119445,5,right_upper_arm.position.z,right_upper_arm.position.z
+right_upper_arm.rotation.w,0.9538947516055093,5,right_upper_arm.rotation.w,right_upper_arm.rotation.w
+right_upper_arm.rotation.x,0.627568751548894,5,right_upper_arm.rotation.x,right_upper_arm.rotation.x
+right_upper_arm.rotation.y,0.9548175560944668,5,right_upper_arm.rotation.y,right_upper_arm.rotation.y
+right_upper_arm.rotation.z,0.9706637479060474,5,right_upper_arm.rotation.z,right_upper_arm.rotation.z
+right_upper_leg.position.x,0.9474077535227226,5,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).
+right_upper_leg.position.y,0.2474548981375029,5,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).
+right_upper_leg.position.z,0.9968461502436712,5,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).
+right_upper_leg.rotation.w,0.995000590787457,5,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.
+right_upper_leg.rotation.x,0.7150499372363329,5,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.
+right_upper_leg.rotation.y,0.974836225267147,5,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.
+right_upper_leg.rotation.z,0.9650809723639736,5,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.
+root.position.x,0.9484696702961732,5,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).
+root.position.y,0.364060421696293,5,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).
+root.position.z,0.9951187917820586,5,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).
+root.rotation.w,0.995553835290575,5,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.
+root.rotation.x,0.8912745625772065,5,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.
+root.rotation.y,0.9786409988401502,5,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.
+root.rotation.z,0.7327303195196763,5,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.
+spine.position.x,0.946371319516764,5,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).,posición X (position X): Coordenada X en metros: izquierda (-) a derecha (+).
+spine.position.y,0.12404472690307233,5,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).,posición Y (position Y): Coordenada Y en metros: abajo (-) a arriba (+).
+spine.position.z,0.9888174822196172,5,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).,posición Z (position Z): Coordenada Z en metros: atrás (-) a adelante (+).
+spine.rotation.w,0.9952687001542802,5,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.
+spine.rotation.x,0.8791600040669342,5,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.
+spine.rotation.y,0.9798739525887747,5,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.
+spine.rotation.z,0.9830056133386383,5,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.
+upper_spine.position.x,0.9550249361337715,5,upper_spine.position.x,upper_spine.position.x
+upper_spine.position.y,0.2987003217349582,5,upper_spine.position.y,upper_spine.position.y
+upper_spine.position.z,0.9972934672534259,5,upper_spine.position.z,upper_spine.position.z
+upper_spine.rotation.w,0.9941191746725428,5,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.,rotación W (rotation W): Componente W (escalar) del cuaternión de orientación.
+upper_spine.rotation.x,0.592594619398857,5,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.,rotación X (rotation X): Componente X (vectorial) del cuaternión de orientación.
+upper_spine.rotation.y,0.9788806085339812,5,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.,rotación Y (rotation Y): Componente Y (vectorial) del cuaternión de orientación.
+upper_spine.rotation.z,0.9827484330863344,5,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.,rotación Z (rotation Z): Componente Z (vectorial) del cuaternión de orientación.
