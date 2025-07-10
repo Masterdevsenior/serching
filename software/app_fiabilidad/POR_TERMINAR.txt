@@ -1,7 +1,0 @@
-unir el script de db con metadatso de descripcion con este app
-separacion por capas
-puede generar un log con todos los errores?
-interfaz grafica
-pruebas unitarias, funcionales y de integracion
-script de arranque de la app que ejecute pruebas, instale dependencias (requirements.txt)
-documentacion: manual de usuario, tecnico, readme

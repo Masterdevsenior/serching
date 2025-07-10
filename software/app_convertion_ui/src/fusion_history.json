@@ -1,0 +1,61 @@
+[
+  {
+    "fecha": "2025-07-10T07:02:48.762869",
+    "directorio": "D:\\searching\\serching\\software\\data",
+    "resumen": {
+      "carpetas_procesadas": 1,
+      "total_archivos": 0,
+      "total_errores": 1,
+      "tasa_exito": -100.0
+    },
+    "detalles_por_carpeta": [
+      {
+        "fecha_hora": "Procesamiento Global",
+        "archivos_procesados": 0,
+        "total_archivos": 0,
+        "errores": 1,
+        "tipos_procesados": {}
+      }
+    ]
+  },
+  {
+    "fecha": "2025-07-10T07:14:00.787717",
+    "directorio": "D:\\searching\\serching\\software\\data",
+    "resumen": {
+      "carpetas_procesadas": 1,
+      "total_archivos": 361,
+      "total_errores": 0,
+      "tasa_exito": 100.0
+    },
+    "detalles_por_carpeta": [
+      {
+        "fecha_hora": "Procesamiento Global",
+        "archivos_procesados": 361,
+        "total_archivos": 361,
+        "errores": 0,
+        "tipos_procesados": {
+          "PpgHrv": {
+            "archivos": 31,
+            "filas": 78
+          },
+          "ProcessedMocap": {
+            "archivos": 92,
+            "filas": 31681
+          },
+          "ProcessedPpg": {
+            "archivos": 57,
+            "filas": 340
+          },
+          "RawMocap": {
+            "archivos": 92,
+            "filas": 32841
+          },
+          "RawPpg": {
+            "archivos": 59,
+            "filas": 43054
+          }
+        }
+      }
+    ]
+  }
+]
