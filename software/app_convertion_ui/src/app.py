@@ -4,6 +4,10 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 import data_processing
 
+# Añadir el directorio raíz al path para importar config
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import config
+
 # Configuración de la página - DEBE SER LA PRIMERA LLAMADA DE STREAMLIT
 st.set_page_config(
     page_title="Procesador de Datos Biométricos",
@@ -116,8 +120,8 @@ TIPOS_VALIDOS = ['PpgHrv', 'ProcessedMocap', 'ProcessedPpg', 'RawMocap', 'RawPpg
 
 # Función para obtener el directorio base
 def get_base_dir():
-    """Obtiene el directorio base de datos"""
-    return os.path.join(os.path.dirname(__file__), "data")
+    """Obtiene el directorio base de datos usando el sistema de configuración"""
+    return config.get_data_directory()
 
 # Función para obtener el archivo de histórico
 def get_history_file():
@@ -492,40 +496,11 @@ def fusionar_por_tipo(staging_dir, merged_dir):
     
     return resultados
 
-# Función para procesar directorio
-def procesar_directorio_fecha(fecha_path, progress_bar, status_text):
-    """Procesa un directorio de fecha/hora específico"""
-    staging_dir, merged_dir = crear_subcarpetas(fecha_path)
-    archivos = buscar_archivos_csv(fecha_path)
-    
-    if not archivos:
-        return {"error": f"No se encontraron archivos CSV válidos en {fecha_path}"}
-    
-    # Procesar archivos CSV
-    archivos_procesados = 0
-    errores = []
-    
-    for i, info in enumerate(archivos):
-        progress_bar.progress((i + 1) / len(archivos))
-        status_text.text(f"Procesando: {info['nombre_original']}")
-        
-        tipo, resultado, exito = convertir_csv_a_xlsx_con_columnas(info, staging_dir)
-        if exito:
-            archivos_procesados += 1
-        else:
-            errores.append(f"{info['path']}: {resultado}")
-    
-    # Fusionar archivos
-    status_text.text("Fusionando archivos por tipo...")
-    resultados_fusion = fusionar_por_tipo(staging_dir, merged_dir)
-    
-    return {
-        "archivos_procesados": archivos_procesados,
-        "total_archivos": len(archivos),
-        "errores": errores,
-        "resultados_fusion": resultados_fusion,
-        "fecha_hora": os.path.basename(fecha_path)
-    }
+def procesar_directorio(carpeta_path, progress_bar, status_text):
+    """
+    Procesa un directorio individual con barra de progreso y estado.
+    """
+    return data_processing.procesar_directorio(carpeta_path, progress_bar, status_text)
 
 # Función para crear gráficos
 def crear_graficos_estadisticas(resultados_totales):
@@ -630,15 +605,18 @@ def mostrar_info_directorio(directorio):
     st.markdown("A continuación se muestra la estructura de carpetas esperada:")
     
     st.code("""
-    directorio_seleccionado/
-    └── data/
-        ├── 2025-03-19-11-00-00/
-        │   ├── Scene Capture - SUB1 - S1 - T1 - CC - OK/
-        │   │   ├── ...-PpgHrv-....csv
-        │   │   └── ...-ProcessedMocap-....csv
-        │   └── ...
-        └── 2025-03-20-14-30-00/
-            └── ...
+    data/
+    ├── Scene Capture - SUB1 - S1 - T1 - CC - OK/
+    ├── Scene Capture - SUB1 - S1 - T2 - CC - OK/
+    ├── ...
+    └── processed_data/
+        ├── staging_xls/
+        └── merged/
+        ├── PpgHrv.csv
+        ├── ProcessedMocap.csv
+        ├── ProcessedPpg.csv
+        ├── RawMocap.csv
+        └── RawPpg.csv
     """, language="bash")
     
     st.markdown("**Directorio `data` detectado:**")
@@ -809,19 +787,17 @@ def main():
             
             start_time = time.time()
             
-            for i, dir_path in enumerate(st.session_state.directorios_a_procesar):
-                progress_text.text(f"Procesando directorio {i+1} de {total_directorios}")
-                status_text.info(f"🔄 Iniciando: {os.path.basename(dir_path)}")
-                
-                try:
-                    resultado_dir = data_processing.procesar_directorio_fecha(dir_path, progress_bar, status_text)
-                    st.session_state.resultados_totales.append(resultado_dir)
-                    status_text.success(f"✅ Completado: {os.path.basename(dir_path)}")
-                except Exception as e:
-                    st.error(f"❌ Error fatal procesando {os.path.basename(dir_path)}: {e}")
-                
-                # Actualizar progreso general
-                progress_bar.progress((i + 1) / total_directorios)
+            # Procesamiento global
+            try:
+                resultado_global = data_processing.procesar_todos_los_directorios(
+                    st.session_state.directorio_input, 
+                    progress_bar, 
+                    status_text
+                )
+                st.session_state.resultados_totales = [resultado_global]
+            except Exception as e:
+                st.error(f"Error en procesamiento global: {e}")
+                return
             
             end_time = time.time()
             

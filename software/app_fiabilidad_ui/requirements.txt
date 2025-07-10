@@ -1,0 +1,10 @@
+pandas
+scipy
+pingouin
+mermaid-cli
+streamlit
+matplotlib
+seaborn
+plotly
+numpy
+psycopg2-binary

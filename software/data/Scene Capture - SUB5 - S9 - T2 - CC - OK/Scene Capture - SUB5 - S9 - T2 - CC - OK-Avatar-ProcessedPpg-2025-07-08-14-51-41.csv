@@ -1,0 +1,7 @@
+frame_number,frame_timestamp,node0.is_heartrate_valid,node0.is_spo2_valid,node0.heartrate,node0.spo2
+0,0,1,0,73,0
+1,898,1,0,66,0
+2,1631,1,0,81,0
+3,2432,1,0,74,0
+4,3165,1,0,81,0
+5,3941,1,0,77,0

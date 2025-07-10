@@ -9,6 +9,11 @@ import logging
 from pathlib import Path
 from datetime import datetime
 import json
+import sys
+
+# Añadir el directorio raíz al path para importar config
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import config
 
 # Configuración de logging
 logging.basicConfig(level=logging.INFO, format="%(levelname)s - %(message)s")
@@ -26,8 +31,8 @@ CSV_PATTERN = re.compile(
 TIPOS_VALIDOS = ['PpgHrv', 'ProcessedMocap', 'ProcessedPpg', 'RawMocap', 'RawPpg']
 
 def get_base_dir():
-    """Obtiene el directorio base de datos"""
-    return os.path.join(os.path.dirname(__file__), "data")
+    """Obtiene el directorio base de datos usando el sistema de configuración"""
+    return config.get_data_directory()
 
 def get_history_file():
     """Obtiene la ruta del archivo de histórico"""
@@ -67,7 +72,7 @@ def guardar_fusion_en_historico(resultados_totales, directorio_base):
         
         for resultado in resultados_totales:
             carpeta_info = {
-                "fecha_hora": resultado["fecha_hora"],
+                "fecha_hora": resultado.get("fecha_hora", "Procesamiento Global"),
                 "archivos_procesados": resultado["archivos_procesados"],
                 "total_archivos": resultado["total_archivos"],
                 "errores": len(resultado["errores"]),
@@ -112,43 +117,85 @@ def find_data_directory(selected_path):
 
 def validar_directorios(base_dir):
     """
-    Valida y retorna las carpetas de fecha-hora válidas.
+    Valida y retorna las carpetas válidas (fecha-hora o Scene Capture directamente).
     """
-    logging.info("Buscando subcarpetas con formato de fecha y hora...")
+    logging.info("Buscando carpetas válidas...")
     if not os.path.exists(base_dir):
         logging.error(f"No existe el directorio: {base_dir}")
         return []
     
-    return [
-        os.path.join(base_dir, d) for d in os.listdir(base_dir)
-        if os.path.isdir(os.path.join(base_dir, d)) and PATRON_FECHA_HORA.match(d)
-    ]
+    carpetas_validas = []
+    
+    for d in os.listdir(base_dir):
+        dir_path = os.path.join(base_dir, d)
+        if os.path.isdir(dir_path):
+            # Verificar si es una carpeta con formato de fecha-hora
+            if PATRON_FECHA_HORA.match(d):
+                carpetas_validas.append(dir_path)
+                logging.info(f"Encontrada carpeta con formato de fecha: {d}")
+            # Verificar si es una carpeta Scene Capture directamente
+            elif SCENE_CAPTURE_PATTERN.search(d):
+                carpetas_validas.append(dir_path)
+                logging.info(f"Encontrada carpeta Scene Capture: {d}")
+    
+    return carpetas_validas
 
-def buscar_archivos_csv(fecha_hora_path):
+def buscar_archivos_csv(carpeta_path):
     """
-    Busca archivos CSV válidos en las subcarpetas de un directorio de fecha-hora.
+    Busca archivos CSV válidos en las carpetas Scene Capture.
     """
     archivos = []
     
-    for root, _, files in os.walk(fecha_hora_path):
-        match_scene = SCENE_CAPTURE_PATTERN.search(os.path.basename(root))
-        if match_scene:
-            sujeto, sesion, tiempo, tipo_captura, resultado = match_scene.groups()
-            
-            for file in files:
-                if CSV_PATTERN.match(file):
-                    tipo_dato = detectar_tipo_archivo(os.path.join(root, file), file)
-                    if tipo_dato:
-                        archivos.append({
-                            "path": os.path.join(root, file),
-                            "sujeto": sujeto,
-                            "sesion": sesion,
-                            "tiempo": tiempo,
-                            "tipo_captura": tipo_captura,
-                            "resultado": resultado,
-                            "tipo_dato": tipo_dato,
-                            "fecha_hora_ejercicio": os.path.basename(fecha_hora_path)
-                        })
+    # Determinar si estamos en una carpeta con fecha o directamente en Scene Capture
+    nombre_carpeta = os.path.basename(carpeta_path)
+    
+    # Si es una carpeta con formato de fecha, buscar subcarpetas Scene Capture
+    if PATRON_FECHA_HORA.match(nombre_carpeta):
+        fecha_hora = nombre_carpeta
+        for root, _, files in os.walk(carpeta_path):
+            match_scene = SCENE_CAPTURE_PATTERN.search(os.path.basename(root))
+            if match_scene:
+                sujeto, sesion, tiempo, tipo_captura, resultado = match_scene.groups()
+                
+                for file in files:
+                    if CSV_PATTERN.match(file):
+                        tipo_dato = detectar_tipo_archivo(os.path.join(root, file), file)
+                        if tipo_dato:
+                            archivos.append({
+                                "path": os.path.join(root, file),
+                                "sujeto": sujeto,
+                                "sesion": sesion,
+                                "tiempo": tiempo,
+                                "tipo_captura": tipo_captura,
+                                "resultado": resultado,
+                                "tipo_dato": tipo_dato,
+                                "fecha_hora_ejercicio": fecha_hora
+                            })
+    
+    # Si es una carpeta Scene Capture directamente
+    elif SCENE_CAPTURE_PATTERN.search(nombre_carpeta):
+        match_scene = SCENE_CAPTURE_PATTERN.search(nombre_carpeta)
+        sujeto, sesion, tiempo, tipo_captura, resultado = match_scene.groups()
+        
+        # Usar fecha actual como fecha_hora_ejercicio
+        from datetime import datetime
+        fecha_hora = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+        
+        for file in os.listdir(carpeta_path):
+            if CSV_PATTERN.match(file):
+                tipo_dato = detectar_tipo_archivo(os.path.join(carpeta_path, file), file)
+                if tipo_dato:
+                    archivos.append({
+                        "path": os.path.join(carpeta_path, file),
+                        "sujeto": sujeto,
+                        "sesion": sesion,
+                        "tiempo": tiempo,
+                        "tipo_captura": tipo_captura,
+                        "resultado": resultado,
+                        "tipo_dato": tipo_dato,
+                        "fecha_hora_ejercicio": fecha_hora
+                    })
+    
     return archivos
 
 def detectar_tipo_archivo(file_path, file_name):
@@ -163,9 +210,20 @@ def detectar_tipo_archivo(file_path, file_name):
 
 def crear_subcarpetas(directorio_fecha):
     """
-    Crea las subcarpetas necesarias para el procesamiento.
+    Crea las subcarpetas necesarias para el procesamiento (para compatibilidad con tests).
     """
     processed_data_dir = os.path.join(directorio_fecha, "processed_data")
+    staging_dir = os.path.join(processed_data_dir, "staging_xls")
+    merged_dir = os.path.join(processed_data_dir, "merged")
+    os.makedirs(staging_dir, exist_ok=True)
+    os.makedirs(merged_dir, exist_ok=True)
+    return staging_dir, merged_dir
+
+def crear_subcarpetas_globales(base_dir):
+    """
+    Crea las subcarpetas necesarias para el procesamiento global en la raíz de data.
+    """
+    processed_data_dir = os.path.join(base_dir, "processed_data")
     staging_dir = os.path.join(processed_data_dir, "staging_xls")
     merged_dir = os.path.join(processed_data_dir, "merged")
     os.makedirs(staging_dir, exist_ok=True)
@@ -229,24 +287,25 @@ def fusionar_por_tipo(staging_dir, merged_dir):
     
     return resultados_fusion
 
-def procesar_directorio_fecha(fecha_path, progress_bar=None, status_text=None):
+def procesar_directorio(carpeta_path, progress_bar=None, status_text=None):
     """
-    Orquesta el procesamiento para un único directorio de fecha-hora.
+    Orquesta el procesamiento para una carpeta (fecha-hora o Scene Capture directamente).
     """
-    logging.info(f"\n>>>>> Iniciando procesamiento para: {os.path.basename(fecha_path)} <<<<<")
+    nombre_carpeta = os.path.basename(carpeta_path)
+    logging.info(f"\n>>>>> Iniciando procesamiento para: {nombre_carpeta} <<<<<")
     
     if status_text:
-        status_text.info(f"Iniciando procesamiento de: {os.path.basename(fecha_path)}")
+        status_text.info(f"Iniciando procesamiento de: {nombre_carpeta}")
     
-    staging_dir, merged_dir = crear_subcarpetas(fecha_path)
-    archivos_a_procesar = buscar_archivos_csv(fecha_path)
+    staging_dir, merged_dir = crear_subcarpetas(carpeta_path)
+    archivos_a_procesar = buscar_archivos_csv(carpeta_path)
     
     if not archivos_a_procesar:
         logging.warning("No se encontraron archivos CSV válidos para procesar.")
         if status_text:
-            status_text.warning(f"No se encontraron archivos CSV válidos en: {os.path.basename(fecha_path)}")
+            status_text.warning(f"No se encontraron archivos CSV válidos en: {nombre_carpeta}")
         return {
-            "fecha_hora": os.path.basename(fecha_path),
+            "fecha_hora": nombre_carpeta,
             "archivos_procesados": 0,
             "total_archivos": 0,
             "errores": ["No se encontraron archivos CSV."],
@@ -258,7 +317,7 @@ def procesar_directorio_fecha(fecha_path, progress_bar=None, status_text=None):
     errors = []
 
     if status_text:
-        status_text.info(f"Encontrados {total_files} archivos CSV para procesar en {os.path.basename(fecha_path)}")
+        status_text.info(f"Encontrados {total_files} archivos CSV para procesar en {nombre_carpeta}")
 
     for i, info in enumerate(archivos_a_procesar):
         if status_text:
@@ -280,17 +339,106 @@ def procesar_directorio_fecha(fecha_path, progress_bar=None, status_text=None):
             progress_bar.progress((i + 1) / total_files)
 
     if status_text:
-        status_text.info(f"Fusionando archivos por tipo en {os.path.basename(fecha_path)}...")
+        status_text.info(f"Fusionando archivos por tipo en {nombre_carpeta}...")
 
     resultados_fusion = fusionar_por_tipo(staging_dir, merged_dir)
     
     if status_text:
-        status_text.success(f"✓ Completado: {os.path.basename(fecha_path)} - {processed_count}/{total_files} archivos procesados")
+        status_text.success(f"✓ Completado: {nombre_carpeta} - {processed_count}/{total_files} archivos procesados")
     
-    logging.info(f">>>>> Procesamiento para {os.path.basename(fecha_path)} finalizado. <<<<<")
+    logging.info(f">>>>> Procesamiento para {nombre_carpeta} finalizado. <<<<<")
     
     return {
-        "fecha_hora": os.path.basename(fecha_path),
+        "fecha_hora": nombre_carpeta,
+        "archivos_procesados": processed_count,
+        "total_archivos": total_files,
+        "errores": errors,
+        "resultados_fusion": resultados_fusion
+    }
+
+def procesar_todos_los_directorios(base_dir, progress_bar=None, status_text=None):
+    """
+    Procesa todos los directorios Scene Capture y crea una sola fusión global.
+    """
+    logging.info(f"\n>>>>> Iniciando procesamiento global para: {base_dir} <<<<<")
+    
+    if status_text:
+        status_text.info(f"Iniciando procesamiento global de todos los directorios")
+    
+    # Crear carpetas globales
+    staging_dir, merged_dir = crear_subcarpetas_globales(base_dir)
+    
+    # Obtener todos los directorios válidos
+    directorios_validos = validar_directorios(base_dir)
+    
+    if not directorios_validos:
+        logging.warning("No se encontraron directorios válidos para procesar.")
+        if status_text:
+            status_text.warning("No se encontraron directorios válidos para procesar.")
+        return {
+            "archivos_procesados": 0,
+            "total_archivos": 0,
+            "errores": ["No se encontraron directorios válidos."],
+            "resultados_fusion": {tipo: {"archivos_procesados": 0, "filas_totales": 0} for tipo in TIPOS_VALIDOS}
+        }
+    
+    # Recolectar todos los archivos de todos los directorios
+    todos_los_archivos = []
+    for directorio in directorios_validos:
+        archivos_directorio = buscar_archivos_csv(directorio)
+        todos_los_archivos.extend(archivos_directorio)
+    
+    if not todos_los_archivos:
+        logging.warning("No se encontraron archivos CSV válidos para procesar.")
+        if status_text:
+            status_text.warning("No se encontraron archivos CSV válidos para procesar.")
+        return {
+            "archivos_procesados": 0,
+            "total_archivos": 0,
+            "errores": ["No se encontraron archivos CSV válidos."],
+            "resultados_fusion": {tipo: {"archivos_procesados": 0, "filas_totales": 0} for tipo in TIPOS_VALIDOS}
+        }
+    
+    total_files = len(todos_los_archivos)
+    processed_count = 0
+    errors = []
+
+    if status_text:
+        status_text.info(f"Encontrados {total_files} archivos CSV para procesar en total")
+
+    # Procesar todos los archivos
+    for i, info in enumerate(todos_los_archivos):
+        if status_text:
+            nombre_archivo = os.path.basename(info["path"])
+            status_text.info(f"Procesando archivo {i+1}/{total_files}: {nombre_archivo}")
+        
+        tipo, ruta_salida = convertir_csv_a_xlsx_con_columnas(info, staging_dir)
+        if tipo and ruta_salida:
+            processed_count += 1
+            if status_text:
+                status_text.success(f"✓ Convertido: {os.path.basename(info['path'])} → {tipo}")
+        else:
+            errors.append(info["path"])
+            if status_text:
+                status_text.error(f"✗ Error: {os.path.basename(info['path'])}")
+        
+        # Actualizar barra de progreso si está disponible
+        if progress_bar:
+            progress_bar.progress((i + 1) / total_files)
+
+    if status_text:
+        status_text.info("Fusionando todos los archivos por tipo...")
+
+    # Hacer una sola fusión global
+    resultados_fusion = fusionar_por_tipo(staging_dir, merged_dir)
+    
+    if status_text:
+        status_text.success(f"✓ Completado procesamiento global - {processed_count}/{total_files} archivos procesados")
+    
+    logging.info(f">>>>> Procesamiento global finalizado. <<<<<")
+    
+    return {
+        "fecha_hora": "Procesamiento Global",  # Agregar clave para compatibilidad
         "archivos_procesados": processed_count,
         "total_archivos": total_files,
         "errores": errors,

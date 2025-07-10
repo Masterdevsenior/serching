@@ -138,14 +138,14 @@ def test_fusionar_por_tipo(mock_to_csv, mock_concat, mock_read_excel, mock_listd
 @patch("data_processing.buscar_archivos_csv")
 @patch("data_processing.convertir_csv_a_xlsx_con_columnas")
 @patch("data_processing.fusionar_por_tipo")
-def test_procesar_directorio_fecha(mock_fusionar, mock_convertir, mock_buscar, mock_crear):
+def test_procesar_directorio(mock_fusionar, mock_convertir, mock_buscar, mock_crear):
     """Prueba la orquestación del procesamiento de un directorio."""
     mock_crear.return_value = ("/fake/staging", "/fake/merged")
     mock_buscar.return_value = [{"path": "file1.csv"}, {"path": "file2.csv"}]
     mock_convertir.side_effect = [("PpgHrv", "/fake/staging/file1.xlsx"), (None, None)] # Simula un éxito y un fallo
     mock_fusionar.return_value = {"PpgHrv": {"archivos_procesados": 1, "filas_totales": 10}}
     
-    resultado = data_processing.procesar_directorio_fecha("/fake/path/2025-01-01-10-00-00")
+    resultado = data_processing.procesar_directorio("/fake/path/2025-01-01-10-00-00")
     
     mock_buscar.assert_called_once()
     assert mock_convertir.call_count == 2
