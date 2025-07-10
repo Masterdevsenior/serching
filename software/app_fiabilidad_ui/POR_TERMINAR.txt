@@ -1,3 +1,0 @@
-pruebas unitarias, funcionales y de integracion
-script de arranque de la app que ejecute pruebas, instale dependencias (requirements.txt)
-documentacion: manual de usuario, tecnico, readme
