@@ -1,5 +1,6 @@
 from fpdf import FPDF
 from datetime import datetime
+from io import BytesIO
 
 def generar_pdf(fisio, biomecanica):
     pdf = FPDF()
@@ -75,3 +76,42 @@ def generar_pdf(fisio, biomecanica):
     pdf.cell(200, 8, "• Realizar pausas regulares", ln=True)
 
     pdf.output("reporte_ergonomia.pdf")
+
+def generar_pdf_batch(sujeto, ejercicio, n_reg, fisio, biomecanica, informe_ia):
+    pdf = FPDF()
+    pdf.add_page()
+    # Título
+    pdf.set_font("Arial", "B", 16)
+    pdf.cell(200, 10, "Reporte de Ergonomía", ln=True, align="C")
+    pdf.cell(200, 10, f"Fecha: {datetime.now().strftime('%d/%m/%Y %H:%M')}", ln=True, align="C")
+    pdf.ln(5)
+    pdf.set_font("Arial", "", 12)
+    pdf.cell(200, 8, f"Sujeto: {sujeto}", ln=True)
+    pdf.cell(200, 8, f"Ejercicio: {ejercicio}", ln=True)
+    pdf.cell(200, 8, f"Registros procesados: {n_reg}", ln=True)
+    pdf.ln(5)
+    # Sección fisiológica
+    pdf.set_font("Arial", "B", 14)
+    pdf.cell(200, 10, "Parámetros fisiológicos:", ln=True)
+    pdf.set_font("Arial", "", 12)
+    for k, v in fisio.items():
+        pdf.cell(200, 8, f"{k}: {v}", ln=True)
+    pdf.ln(5)
+    # Sección biomecánica
+    pdf.set_font("Arial", "B", 14)
+    pdf.cell(200, 10, "Parámetros biomecánicos:", ln=True)
+    pdf.set_font("Arial", "", 12)
+    for k, v in biomecanica.items():
+        pdf.cell(200, 8, f"{k}: {v}", ln=True)
+    pdf.ln(5)
+    # Informe IA
+    if informe_ia:
+        pdf.set_font("Arial", "B", 14)
+        pdf.cell(200, 10, "Informe de Análisis Ergonómico:", ln=True)
+        pdf.set_font("Arial", "", 12)
+        for linea in informe_ia.split('\n'):
+            pdf.multi_cell(0, 8, linea)
+        pdf.ln(5)
+    # Devolver como bytes para descarga en Streamlit
+    pdf_bytes = pdf.output(dest='S').encode('latin1')
+    return pdf_bytes
