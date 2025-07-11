@@ -1,0 +1,177 @@
+2025-07-11 15:20:54,745 [INFO] Prompt enviado a Gemini:
+
+Eres un experto en ergonomía y salud ocupacional.
+Objetivo: Análisis de información de fisiología y biomecánica para identificar riesgos ergonómicos, prescripción ergonómica y recomendaciones.
+
+Analiza los siguientes resultados grupales:
+---
+Fisiología (promedio):
+{'frame_number': 1.0, 'frame_timestamp': 553.93, 'mean_rr': 579.81, 'HRV_sdnn': 80.76, 'sdsd': 85.52, 'HRV_rmssd': 84.73, 'sd1': 60.47, 'sd2': 105.6, 'HRV_lf_hf': 0.77, 'frecuencia_cardiaca_prom': 103.25, 'frecuencia_cardiaca_max': 132, 'spo2_prom': 0.0}
+---
+Parámetros biomecánicos:
+{'frame_number': 196.94, 'frame_timestamp': 2016.22, 'root.position.x': 0.14, 'root.position.z': 0.07, 'root.rotation.w': 0.38, 'root.rotation.y': 0.31, 'hips.position.x': 0.14, 'hips.position.z': 0.07, 'hips.rotation.w': 0.38, 'hips.rotation.y': 0.31, 'left_upper_leg.position.x': 0.11, 'left_upper_leg.position.z': 0.12, 'left_upper_leg.rotation.w': 0.31, 'left_upper_leg.rotation.y': 0.04, 'left_upper_leg.rotation.z': 0.02, 'right_upper_leg.position.x': 0.19, 'right_upper_leg.position.z': 0.09, 'right_upper_leg.rotation.w': 0.33, 'right_upper_leg.rotation.y': 0.22, 'right_upper_leg.rotation.z': 0.13, 'left_lower_leg.position.x': 0.0, 'left_lower_leg.position.z': -0.01, 'left_lower_leg.rotation.w': 0.36, 'left_lower_leg.rotation.y': 0.11, 'left_lower_leg.rotation.z': 0.0, 'right_lower_leg.position.x': 0.2, 'right_lower_leg.position.z': -0.07, 'right_lower_leg.rotation.w': 0.38, 'right_lower_leg.rotation.y': 0.29, 'right_lower_leg.rotation.z': -0.06, 'left_foot.position.x': 0.03, 'left_foot.position.z': 0.06, 'left_foot.rotation.w': 0.37, 'left_foot.rotation.x': 0.01, 'left_foot.rotation.y': 0.33, 'right_foot.position.x': 0.22, 'right_foot.position.z': 0.01, 'right_foot.rotation.w': 0.39, 'right_foot.rotation.x': 0.01, 'right_foot.rotation.y': 0.29, 'spine.position.x': 0.15, 'spine.position.z': 0.12, 'spine.rotation.w': 0.37, 'spine.rotation.y': 0.3, 'spine.rotation.z': -0.06, 'upper_spine.position.x': 0.14, 'upper_spine.position.z': 0.07, 'upper_spine.rotation.w': 0.31, 'upper_spine.rotation.y': 0.27, 'upper_spine.rotation.z': -0.16, 'neck.position.x': 0.12, 'neck.position.z': 0.02, 'neck.rotation.w': 0.31, 'neck.rotation.y': 0.27, 'neck.rotation.z': -0.16, 'head.position.x': 0.11, 'head.position.z': -0.04, 'head.rotation.w': 0.31, 'head.rotation.y': 0.27, 'head.rotation.z': -0.16, 'left_shoulder.position.x': 0.13, 'left_shoulder.position.z': 0.03, 'left_shoulder.rotation.w': 0.29, 'left_shoulder.rotation.y': -0.18, 'left_shoulder.rotation.z': 0.18, 'right_shoulder.position.x': 0.13, 'right_shoulder.position.z': 0.03, 'right_shoulder.rotation.w': 0.33, 'right_shoulder.rotation.y': 0.24, 'right_shoulder.rotation.z': -0.08, 'left_upper_arm.position.x': 0.03, 'left_upper_arm.position.z': 0.02, 'left_upper_arm.rotation.w': 0.42, 'left_upper_arm.rotation.y': 0.28, 'left_upper_arm.rotation.z': -0.01, 'right_upper_arm.position.x': 0.21, 'right_upper_arm.position.z': -0.04, 'right_upper_arm.rotation.w': 0.38, 'right_upper_arm.rotation.y': -0.41, 'right_upper_arm.rotation.z': 0.04, 'left_lower_arm.position.x': 0.03, 'left_lower_arm.position.z': 0.02, 'left_lower_arm.rotation.w': 0.4, 'left_lower_arm.rotation.y': -0.12, 'right_lower_arm.position.x': 0.21, 'right_lower_arm.position.z': -0.05, 'right_lower_arm.rotation.w': 0.4, 'right_lower_arm.rotation.x': 0.0, 'right_lower_arm.rotation.y': 0.2, 'right_lower_arm.rotation.z': 0.03, 'left_hand.position.x': 0.05, 'left_hand.position.z': 0.0, 'left_hand.rotation.w': 0.4, 'left_hand.rotation.y': -0.12, 'left_hand.rotation.z': -0.05, 'right_hand.position.x': 0.2, 'right_hand.position.z': -0.06, 'right_hand.rotation.w': 0.39, 'right_hand.rotation.x': 0.02, 'right_hand.rotation.y': 0.19, 'right_hand.rotation.z': 0.07, 'HipRotL.angle': -0.32, 'AnkleProSupL.angle': -0.18, 'ElbowFlexExtR.angular_acc': 52.4, 'WristFlexExtR.angle': 8.97, 'ElbowFlexExtL.angular_acc': 100.85, 'ForearmProSupL.angular_v': 12.42, 'ScapulaDeprElevR.angle': 0.37, 'left_foot.contact': 0.98, 'right_foot.contact': 0.99}
+---
+Genera un informe profesional, breve y claro, que incluya:
+- Identificación de riesgos ergonómicos
+- Prescripción ergonómica
+- Recomendaciones prácticas
+(No uses formato markdown, responde solo en texto plano para un informe PDF.)
+
+2025-07-11 15:20:55,507 [INFO] Respuesta de Gemini recibida (longitud 144):
+'Error 503: {\n  "error": {\n    "code": 503,\n    "message": "The model is overloaded. Please try again later.",\n    "status": "UNAVAILABLE"\n  }\n}\n'
+2025-07-11 15:20:55,508 [INFO] Estado final de informe_ia: OK
+2025-07-11 15:20:55,509 [ERROR] Error en la respuesta de IA: Error 503: {
+  "error": {
+    "code": 503,
+    "message": "The model is overloaded. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+2025-07-11 15:24:46,707 [INFO] Intentando conectar a PostgreSQL con: host=localhost, port=5432, db=tesla_ergonomia, user=postgres
+2025-07-11 15:24:46,708 [INFO] URL de conexión PostgreSQL: postgresql+psycopg2://postgres:1126254560@localhost:5432/tesla_ergonomia
+2025-07-11 15:24:46,822 [INFO] Tablas creadas/verificadas correctamente.
+2025-07-11 15:25:08,483 [INFO] Prompt enviado a Gemini:
+
+Eres un experto en ergonomía y salud ocupacional.
+Objetivo: Análisis de información de fisiología y biomecánica para identificar riesgos ergonómicos, prescripción ergonómica y recomendaciones.
+
+Analiza los siguientes resultados grupales:
+---
+Fisiología (promedio):
+{'frame_number': 0.62, 'frame_timestamp': 558.88, 'mean_rr': 586.05, 'HRV_sdnn': 105.4, 'sdsd': 97.86, 'HRV_rmssd': 96.99, 'sd1': 69.2, 'sd2': 140.41, 'HRV_lf_hf': 2.3, 'frecuencia_cardiaca_prom': 109.37, 'frecuencia_cardiaca_max': 143, 'spo2_prom': 0.0}
+---
+Parámetros biomecánicos:
+{'frame_number': 146.66, 'frame_timestamp': 1507.22, 'root.position.x': 0.11, 'root.position.z': 0.0, 'root.rotation.w': 0.46, 'root.rotation.y': -0.1, 'hips.position.x': 0.11, 'hips.position.z': 0.0, 'hips.rotation.w': 0.46, 'hips.rotation.y': -0.1, 'left_upper_leg.position.x': 0.11, 'left_upper_leg.position.z': 0.07, 'left_upper_leg.rotation.w': 0.38, 'left_upper_leg.rotation.y': -0.43, 'left_upper_leg.rotation.z': -0.37, 'right_upper_leg.position.x': 0.17, 'right_upper_leg.position.z': -0.0, 'right_upper_leg.rotation.w': 0.38, 'right_upper_leg.rotation.y': -0.12, 'right_upper_leg.rotation.z': -0.08, 'left_lower_leg.position.x': -0.08, 'left_lower_leg.position.z': 0.01, 'left_lower_leg.rotation.w': 0.47, 'left_lower_leg.rotation.y': -0.59, 'left_lower_leg.rotation.z': 0.12, 'right_lower_leg.position.x': 0.12, 'right_lower_leg.position.z': -0.15, 'right_lower_leg.rotation.w': 0.47, 'right_lower_leg.rotation.y': -0.12, 'right_lower_leg.rotation.z': 0.01, 'left_foot.position.x': -0.0, 'left_foot.position.z': 0.06, 'left_foot.rotation.w': 0.47, 'left_foot.rotation.x': 0.01, 'left_foot.rotation.y': -0.3, 'right_foot.position.x': 0.15, 'right_foot.position.z': -0.08, 'right_foot.rotation.w': 0.47, 'right_foot.rotation.x': 0.01, 'right_foot.rotation.y': -0.15, 'spine.position.x': 0.16, 'spine.position.z': 0.04, 'spine.rotation.w': 0.45, 'spine.rotation.y': -0.1, 'spine.rotation.z': 0.03, 'upper_spine.position.x': 0.12, 'upper_spine.position.z': -0.0, 'upper_spine.rotation.w': 0.4, 'upper_spine.rotation.y': -0.07, 'upper_spine.rotation.z': 0.03, 'neck.position.x': 0.08, 'neck.position.z': -0.04, 'neck.rotation.w': 0.4, 'neck.rotation.y': -0.07, 'neck.rotation.z': 0.03, 'head.position.x': 0.03, 'head.position.z': -0.08, 'head.rotation.w': 0.4, 'head.rotation.y': -0.07, 'head.rotation.z': 0.03, 'left_shoulder.position.x': 0.09, 'left_shoulder.position.z': -0.03, 'left_shoulder.rotation.w': 0.41, 'left_shoulder.rotation.y': -0.42, 'left_shoulder.rotation.z': 0.25, 'right_shoulder.position.x': 0.09, 'right_shoulder.position.z': -0.03, 'right_shoulder.rotation.w': 0.39, 'right_shoulder.rotation.y': -0.12, 'right_shoulder.rotation.z': 0.13, 'left_upper_arm.position.x': -0.01, 'left_upper_arm.position.z': 0.02, 'left_upper_arm.rotation.w': 0.45, 'left_upper_arm.rotation.y': -0.15, 'left_upper_arm.rotation.z': 0.01, 'right_upper_arm.position.x': 0.12, 'right_upper_arm.position.z': -0.15, 'right_upper_arm.rotation.w': 0.51, 'right_upper_arm.rotation.y': -0.54, 'right_upper_arm.rotation.z': 0.05, 'left_lower_arm.position.x': -0.01, 'left_lower_arm.position.z': 0.0, 'left_lower_arm.rotation.w': 0.49, 'left_lower_arm.rotation.y': -0.36, 'right_lower_arm.position.x': 0.1, 'right_lower_arm.position.z': -0.15, 'right_lower_arm.rotation.w': 0.4, 'right_lower_arm.rotation.x': -0.06, 'right_lower_arm.rotation.y': -0.18, 'right_lower_arm.rotation.z': 0.02, 'left_hand.position.x': -0.02, 'left_hand.position.z': -0.03, 'left_hand.rotation.w': 0.49, 'left_hand.rotation.y': -0.35, 'left_hand.rotation.z': -0.15, 'right_hand.position.x': 0.05, 'right_hand.position.z': -0.15, 'right_hand.rotation.w': 0.39, 'right_hand.rotation.x': -0.1, 'right_hand.rotation.y': -0.17, 'right_hand.rotation.z': 0.08, 'HipRotL.angle': -1.32, 'AnkleProSupL.angle': -2.36, 'ElbowFlexExtR.angular_acc': 62.78, 'WristFlexExtR.angle': 18.73, 'ElbowFlexExtL.angular_acc': 205.57, 'ForearmProSupL.angular_v': 3.36, 'ScapulaDeprElevR.angle': 1.86, 'left_foot.contact': 1.0, 'right_foot.contact': 1.0}
+---
+Genera un informe profesional, breve y claro, que incluya:
+- Identificación de riesgos ergonómicos
+- Prescripción ergonómica
+- Recomendaciones prácticas
+(No uses formato markdown, responde solo en texto plano para un informe PDF.)
+
+2025-07-11 15:25:14,776 [INFO] Respuesta de Gemini recibida (longitud 3938):
+'Informe de Análisis Ergonómico\n\nIntroducción:\n\nEste informe analiza datos fisiológicos y biomecánicos para identificar riesgos ergonómicos potenciales y ofrecer recomendaciones para mejorar la postura y reducir el riesgo de lesiones músculo-esqueléticas.  Los datos analizados corresponden a un grupo de individuos, por lo que las recomendaciones son generales y deben ser adaptadas individualmente.\n\nIdentificación de Riesgos Ergonómicos:\n\nLos datos fisiológicos muestran una frecuencia cardíaca promedio elevada (109.37 bpm) y una frecuencia cardíaca máxima alta (143 bpm), sugiriendo una alta demanda cardiovascular.  El valor de HRV_lf/hf de 2.3 indica un posible estrés simpático elevado.  La ausencia de datos de SpO2 impide una valoración completa de la oxigenación.  \n\nEn cuanto a los parámetros biomecánicos, se observan ciertas asimetrías en la postura y movimiento: diferencias en las rotaciones de las extremidades inferiores (rotación interna de la pierna izquierda más pronunciada que la derecha) y diferencias en las posiciones de la mano derecha e izquierda. La aceleración angular del codo derecho (ElbowFlexExtR.angular_acc) es notablemente menor que la del izquierdo, lo que podría indicar una estrategia compensatoria.  La elevada aceleración angular del codo izquierdo (ElbowFlexExtL.angular_acc)  puede indicar movimientos bruscos y potencialmente lesivos.  La ausencia de datos de carga y fuerza impide una valoración completa de la carga biomecánica.\n\nEstas discrepancias sugieren la posibilidad de malas posturas, movimientos repetitivos, o una combinación de ambos, factores de riesgo comunes para trastornos músculo-esqueléticos, especialmente en miembros superiores y columna vertebral.\n\n\nPrescripción Ergonómica:\n\nSe requiere una evaluación ergonómica in situ para confirmar la fuente de los riesgos identificados.  Se recomienda una evaluación postural detallada que incluya observación directa de la tarea y análisis del entorno de trabajo.  Una vez identificada la tarea causante de las desviaciones observadas en la fisiología y biomecánica, se implementarán correcciones en:\n\n* Postura: Se debe promover una postura neutral de la columna vertebral durante las tareas, con especial atención a evitar rotaciones y flexiones excesivas.\n* Movimientos: Se deben minimizar los movimientos repetitivos y bruscos, especialmente en los codos.  Se deben optimizar los procesos para reducir las demandas físicas.\n*  Entorno de trabajo: Se deben ajustar los parámetros de trabajo, como la altura de las superficies de trabajo, para facilitar una postura correcta.\n\nRecomendaciones Prácticas:\n\n*  Pausas activas:  Se recomienda la inclusión de pausas activas regulares durante la jornada laboral, incluyendo estiramientos y ejercicios de movilidad articular.\n*  Formación en ergonomía:  Capacitación para los trabajadores sobre posturas correctas, técnicas de manejo de carga y estrategias para prevenir las lesiones por movimientos repetitivos.\n*  Evaluación individualizada: Se debe realizar un estudio ergonómico individual para cada trabajador, utilizando herramientas de análisis de riesgos ergonómicos, y ajustar las recomendaciones en función de las particularidades de cada puesto.\n*  Ergonomía activa:  Implementar herramientas y técnicas para promover una ergonomía activa y dinámica.\n*  Monitoreo continuo:  Se debe monitorizar la salud y el bienestar de los trabajadores mediante la recolección y el análisis continuo de datos fisiológicos y biomecánicos, para realizar ajustes en las estrategias de prevención, si es necesario.\n\nConclusión:\n\nLos datos indican la presencia de riesgos ergonómicos potenciales.  Se recomiendan acciones inmediatas para minimizar estos riesgos, incluyendo una evaluación ergonómica completa,  capacitación y la implementación de medidas preventivas.  El seguimiento continuo de los datos fisiológicos y biomecánicos es crucial para la eficacia de las medidas implementadas.\n'
+2025-07-11 15:25:14,778 [INFO] Estado final de informe_ia: OK
+2025-07-11 15:25:15,421 [ERROR] Error obteniendo descripción de variable 'frame_number': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,422 [ERROR] Error obteniendo descripción de variable 'frame_timestamp': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,422 [ERROR] Error obteniendo descripción de variable 'mean_rr': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,423 [ERROR] Error obteniendo descripción de variable 'HRV_sdnn': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,423 [ERROR] Error obteniendo descripción de variable 'sdsd': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,423 [ERROR] Error obteniendo descripción de variable 'HRV_rmssd': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,424 [ERROR] Error obteniendo descripción de variable 'sd1': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,424 [ERROR] Error obteniendo descripción de variable 'sd2': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,425 [ERROR] Error obteniendo descripción de variable 'HRV_lf_hf': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,425 [ERROR] Error obteniendo descripción de variable 'frecuencia_cardiaca_prom': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,426 [ERROR] Error obteniendo descripción de variable 'frecuencia_cardiaca_max': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,426 [ERROR] Error obteniendo descripción de variable 'spo2_prom': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,506 [ERROR] Error obteniendo descripción de variable 'frame_number': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,506 [ERROR] Error obteniendo descripción de variable 'frame_timestamp': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,507 [ERROR] Error obteniendo descripción de variable 'root.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,508 [ERROR] Error obteniendo descripción de variable 'root.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,508 [ERROR] Error obteniendo descripción de variable 'root.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,509 [ERROR] Error obteniendo descripción de variable 'root.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,509 [ERROR] Error obteniendo descripción de variable 'hips.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,510 [ERROR] Error obteniendo descripción de variable 'hips.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,510 [ERROR] Error obteniendo descripción de variable 'hips.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,510 [ERROR] Error obteniendo descripción de variable 'hips.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,511 [ERROR] Error obteniendo descripción de variable 'left_upper_leg.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,511 [ERROR] Error obteniendo descripción de variable 'left_upper_leg.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,512 [ERROR] Error obteniendo descripción de variable 'left_upper_leg.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,512 [ERROR] Error obteniendo descripción de variable 'left_upper_leg.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,513 [ERROR] Error obteniendo descripción de variable 'left_upper_leg.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,514 [ERROR] Error obteniendo descripción de variable 'right_upper_leg.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,514 [ERROR] Error obteniendo descripción de variable 'right_upper_leg.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,514 [ERROR] Error obteniendo descripción de variable 'right_upper_leg.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,515 [ERROR] Error obteniendo descripción de variable 'right_upper_leg.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,515 [ERROR] Error obteniendo descripción de variable 'right_upper_leg.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,515 [ERROR] Error obteniendo descripción de variable 'left_lower_leg.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,516 [ERROR] Error obteniendo descripción de variable 'left_lower_leg.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,516 [ERROR] Error obteniendo descripción de variable 'left_lower_leg.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,516 [ERROR] Error obteniendo descripción de variable 'left_lower_leg.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,517 [ERROR] Error obteniendo descripción de variable 'left_lower_leg.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,517 [ERROR] Error obteniendo descripción de variable 'right_lower_leg.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,517 [ERROR] Error obteniendo descripción de variable 'right_lower_leg.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,518 [ERROR] Error obteniendo descripción de variable 'right_lower_leg.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,518 [ERROR] Error obteniendo descripción de variable 'right_lower_leg.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,518 [ERROR] Error obteniendo descripción de variable 'right_lower_leg.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,519 [ERROR] Error obteniendo descripción de variable 'left_foot.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,519 [ERROR] Error obteniendo descripción de variable 'left_foot.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,519 [ERROR] Error obteniendo descripción de variable 'left_foot.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,520 [ERROR] Error obteniendo descripción de variable 'left_foot.rotation.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,520 [ERROR] Error obteniendo descripción de variable 'left_foot.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,520 [ERROR] Error obteniendo descripción de variable 'right_foot.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,520 [ERROR] Error obteniendo descripción de variable 'right_foot.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,521 [ERROR] Error obteniendo descripción de variable 'right_foot.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,521 [ERROR] Error obteniendo descripción de variable 'right_foot.rotation.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,521 [ERROR] Error obteniendo descripción de variable 'right_foot.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,522 [ERROR] Error obteniendo descripción de variable 'spine.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,522 [ERROR] Error obteniendo descripción de variable 'spine.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,522 [ERROR] Error obteniendo descripción de variable 'spine.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,523 [ERROR] Error obteniendo descripción de variable 'spine.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,523 [ERROR] Error obteniendo descripción de variable 'spine.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,523 [ERROR] Error obteniendo descripción de variable 'upper_spine.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,524 [ERROR] Error obteniendo descripción de variable 'upper_spine.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,524 [ERROR] Error obteniendo descripción de variable 'upper_spine.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,524 [ERROR] Error obteniendo descripción de variable 'upper_spine.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,525 [ERROR] Error obteniendo descripción de variable 'upper_spine.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,525 [ERROR] Error obteniendo descripción de variable 'neck.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,526 [ERROR] Error obteniendo descripción de variable 'neck.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,526 [ERROR] Error obteniendo descripción de variable 'neck.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,526 [ERROR] Error obteniendo descripción de variable 'neck.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,527 [ERROR] Error obteniendo descripción de variable 'neck.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,527 [ERROR] Error obteniendo descripción de variable 'head.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,527 [ERROR] Error obteniendo descripción de variable 'head.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,528 [ERROR] Error obteniendo descripción de variable 'head.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,528 [ERROR] Error obteniendo descripción de variable 'head.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,529 [ERROR] Error obteniendo descripción de variable 'head.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,530 [ERROR] Error obteniendo descripción de variable 'left_shoulder.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,530 [ERROR] Error obteniendo descripción de variable 'left_shoulder.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,530 [ERROR] Error obteniendo descripción de variable 'left_shoulder.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,531 [ERROR] Error obteniendo descripción de variable 'left_shoulder.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,531 [ERROR] Error obteniendo descripción de variable 'left_shoulder.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,532 [ERROR] Error obteniendo descripción de variable 'right_shoulder.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,532 [ERROR] Error obteniendo descripción de variable 'right_shoulder.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,533 [ERROR] Error obteniendo descripción de variable 'right_shoulder.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,533 [ERROR] Error obteniendo descripción de variable 'right_shoulder.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,534 [ERROR] Error obteniendo descripción de variable 'right_shoulder.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,534 [ERROR] Error obteniendo descripción de variable 'left_upper_arm.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,535 [ERROR] Error obteniendo descripción de variable 'left_upper_arm.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,535 [ERROR] Error obteniendo descripción de variable 'left_upper_arm.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,536 [ERROR] Error obteniendo descripción de variable 'left_upper_arm.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,536 [ERROR] Error obteniendo descripción de variable 'left_upper_arm.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,537 [ERROR] Error obteniendo descripción de variable 'right_upper_arm.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,539 [ERROR] Error obteniendo descripción de variable 'right_upper_arm.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,540 [ERROR] Error obteniendo descripción de variable 'right_upper_arm.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,540 [ERROR] Error obteniendo descripción de variable 'right_upper_arm.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,540 [ERROR] Error obteniendo descripción de variable 'right_upper_arm.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,541 [ERROR] Error obteniendo descripción de variable 'left_lower_arm.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,541 [ERROR] Error obteniendo descripción de variable 'left_lower_arm.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,542 [ERROR] Error obteniendo descripción de variable 'left_lower_arm.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,542 [ERROR] Error obteniendo descripción de variable 'left_lower_arm.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,543 [ERROR] Error obteniendo descripción de variable 'right_lower_arm.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,543 [ERROR] Error obteniendo descripción de variable 'right_lower_arm.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,543 [ERROR] Error obteniendo descripción de variable 'right_lower_arm.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,543 [ERROR] Error obteniendo descripción de variable 'right_lower_arm.rotation.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,544 [ERROR] Error obteniendo descripción de variable 'right_lower_arm.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,544 [ERROR] Error obteniendo descripción de variable 'right_lower_arm.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,544 [ERROR] Error obteniendo descripción de variable 'left_hand.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,545 [ERROR] Error obteniendo descripción de variable 'left_hand.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,545 [ERROR] Error obteniendo descripción de variable 'left_hand.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,546 [ERROR] Error obteniendo descripción de variable 'left_hand.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,546 [ERROR] Error obteniendo descripción de variable 'left_hand.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,547 [ERROR] Error obteniendo descripción de variable 'right_hand.position.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,547 [ERROR] Error obteniendo descripción de variable 'right_hand.position.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,548 [ERROR] Error obteniendo descripción de variable 'right_hand.rotation.w': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,548 [ERROR] Error obteniendo descripción de variable 'right_hand.rotation.x': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,549 [ERROR] Error obteniendo descripción de variable 'right_hand.rotation.y': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,549 [ERROR] Error obteniendo descripción de variable 'right_hand.rotation.z': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,549 [ERROR] Error obteniendo descripción de variable 'HipRotL.angle': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,550 [ERROR] Error obteniendo descripción de variable 'AnkleProSupL.angle': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,551 [ERROR] Error obteniendo descripción de variable 'ElbowFlexExtR.angular_acc': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,551 [ERROR] Error obteniendo descripción de variable 'WristFlexExtR.angle': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,552 [ERROR] Error obteniendo descripción de variable 'ElbowFlexExtL.angular_acc': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,552 [ERROR] Error obteniendo descripción de variable 'ForearmProSupL.angular_v': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,553 [ERROR] Error obteniendo descripción de variable 'ScapulaDeprElevR.angle': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,553 [ERROR] Error obteniendo descripción de variable 'left_foot.contact': List argument must consist only of tuples or dictionaries
+2025-07-11 15:25:15,554 [ERROR] Error obteniendo descripción de variable 'right_foot.contact': List argument must consist only of tuples or dictionaries

@@ -23,7 +23,17 @@ def procesar_simulaciones(simulaciones, ruta_icc):
     if hrv_dfs:
         hrv_concat = pd.concat(hrv_dfs, ignore_index=True)
         for col in hrv_concat.columns:
-            resumen_fisiologico[col] = round(hrv_concat[col].mean(), 2)
+            val = round(hrv_concat[col].mean(), 2)
+            # Normalizar nombres clave
+            col_norm = col.strip().lower().replace("/", "_").replace(" ", "_")
+            if col_norm in ["rmssd", "hrv_rmssd"]:
+                resumen_fisiologico["HRV_rmssd"] = val
+            elif col_norm in ["sdnn", "hrv_sdnn"]:
+                resumen_fisiologico["HRV_sdnn"] = val
+            elif col_norm in ["lf_hf", "lf/hf", "hrv_lf_hf"]:
+                resumen_fisiologico["HRV_lf_hf"] = val
+            else:
+                resumen_fisiologico[col] = val
     if ppg_dfs:
         ppg_concat = pd.concat(ppg_dfs, ignore_index=True)
         if 'node0.heartrate' in ppg_concat.columns:

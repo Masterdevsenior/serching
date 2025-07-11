@@ -2,18 +2,26 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
+def get_var(resumen, *keys):
+    # Busca variantes de nombre en el resumen
+    for k in keys:
+        for rk in resumen.keys():
+            if rk.lower().replace("/", "_").replace(" ", "_") == k.lower().replace("/", "_").replace(" ", "_"):
+                return resumen[rk]
+    return "N/A"
+
 def show_hrv_graphs(resumen):
     col1, col2, col3, col4, col5 = st.columns(5)
     with col1:
-        st.metric("FC promedio", f"{resumen.get('frecuencia_cardiaca_prom', 'N/A')} bpm")
+        st.metric("FC promedio", f"{get_var(resumen, 'frecuencia_cardiaca_prom')} bpm")
     with col2:
-        st.metric("FC máxima", f"{resumen.get('frecuencia_cardiaca_max', 'N/A')} bpm")
+        st.metric("FC máxima", f"{get_var(resumen, 'frecuencia_cardiaca_max')} bpm")
     with col3:
-        st.metric("RMSSD", f"{resumen.get('HRV_rmssd', 'N/A')}")
+        st.metric("RMSSD", f"{get_var(resumen, 'HRV_rmssd', 'rmssd')}")
     with col4:
-        st.metric("SDNN", f"{resumen.get('HRV_sdnn', 'N/A')}")
+        st.metric("SDNN", f"{get_var(resumen, 'HRV_sdnn', 'sdnn')}")
     with col5:
-        st.metric("LF/HF Ratio", f"{resumen.get('HRV_lf_hf', 'N/A')}")
+        st.metric("LF/HF Ratio", f"{get_var(resumen, 'HRV_lf_hf', 'lf/hf', 'lf_hf')}")
 
     # Gráfica de tendencias
     if 'frecuencia_cardiaca_prom' in resumen:
@@ -33,16 +41,16 @@ def show_joint_angles(biomecanica):
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.metric("Flexión rodilla derecha", f"{biomecanica.get('KneeFlexExtR.angle', 'N/A')}°")
-        st.metric("Flexión rodilla izquierda", f"{biomecanica.get('KneeFlexExtL.angle', 'N/A')}°")
+        st.metric("Flexión rodilla derecha", f"{get_var(biomecanica, 'KneeFlexExtR.angle')}°")
+        st.metric("Flexión rodilla izquierda", f"{get_var(biomecanica, 'KneeFlexExtL.angle')}°")
     
     with col2:
-        st.metric("Flexión cadera derecha", f"{biomecanica.get('HipFlexExtR.angle', 'N/A')}°")
-        st.metric("Flexión cadera izquierda", f"{biomecanica.get('HipFlexExtL.angle', 'N/A')}°")
+        st.metric("Flexión cadera derecha", f"{get_var(biomecanica, 'HipFlexExtR.angle')}°")
+        st.metric("Flexión cadera izquierda", f"{get_var(biomecanica, 'HipFlexExtL.angle')}°")
     
     with col3:
-        st.metric("Flexión tronco", f"{biomecanica.get('TrunkFlexExt.angle', 'N/A')}°")
-        st.metric("Inclinación pelvis", f"{biomecanica.get('PelvisTilt.angle', 'N/A')}°")
+        st.metric("Flexión tronco", f"{get_var(biomecanica, 'TrunkFlexExt.angle')}°")
+        st.metric("Inclinación pelvis", f"{get_var(biomecanica, 'PelvisTilt.angle')}°")
     
     # Gráficas de ángulos
     col1, col2 = st.columns(2)
