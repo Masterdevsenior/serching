@@ -1,34 +1,29 @@
 import streamlit as st
-import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
 def show_hrv_graphs(resumen):
-    col1, col2 = st.columns(2)
-    
+    col1, col2, col3, col4, col5 = st.columns(5)
     with col1:
-        st.metric("Frecuencia cardíaca promedio", f"{resumen.get('frecuencia_cardiaca_prom', 'N/A')} bpm")
-        st.metric("Frecuencia cardíaca máxima", f"{resumen.get('frecuencia_cardiaca_max', 'N/A')} bpm")
-        st.metric("SpO2 promedio", f"{resumen.get('spo2_prom', 'N/A')}%")
-    
+        st.metric("FC promedio", f"{resumen.get('frecuencia_cardiaca_prom', 'N/A')} bpm")
     with col2:
+        st.metric("FC máxima", f"{resumen.get('frecuencia_cardiaca_max', 'N/A')} bpm")
+    with col3:
         st.metric("RMSSD", f"{resumen.get('HRV_rmssd', 'N/A')}")
+    with col4:
         st.metric("SDNN", f"{resumen.get('HRV_sdnn', 'N/A')}")
+    with col5:
         st.metric("LF/HF Ratio", f"{resumen.get('HRV_lf_hf', 'N/A')}")
-    
+
     # Gráfica de tendencias
     if 'frecuencia_cardiaca_prom' in resumen:
         st.subheader("📈 Tendencias fisiológicas")
-        
-        # Simular datos de tendencia
         tiempo = np.linspace(0, 10, 50)
         hr_trend = resumen['frecuencia_cardiaca_prom'] + np.random.normal(0, 5, 50)
-        
         df_trend = pd.DataFrame({
             'Tiempo (min)': tiempo,
             'Frecuencia Cardíaca (bpm)': hr_trend
         })
-        
         st.line_chart(df_trend.set_index('Tiempo (min)'))
 
 def show_joint_angles(biomecanica):

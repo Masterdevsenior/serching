@@ -7,8 +7,8 @@ def obtener_respuesta_ia(prompt, timeout=30):
     Obtener respuesta de Gemini con timeout y mejor manejo de errores
     """
     try:
-        API_KEY = "AIzaSyDOyyovOaPn2NKAm-FuNqqgVA-eo8OCor4"
-        url = f"https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key={API_KEY}"
+        API_KEY = "AIzaSyCVm43BHsLAfuL7FuMI_pe-RAgchaog4Vw"
+        url = f"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key={API_KEY}"
 
 
         headers = {"Content-Type": "application/json"}

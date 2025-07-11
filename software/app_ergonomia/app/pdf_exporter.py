@@ -62,7 +62,7 @@ def generar_pdf(fisio, biomecanica):
             pdf.cell(200, 8, f"Riesgo: {riesgo}", ln=True)
     else:
         pdf.cell(200, 8, "No se detectaron riesgos ergonomicos significativos", ln=True)
-    
+
     pdf.ln(10)
     
     # Recomendaciones

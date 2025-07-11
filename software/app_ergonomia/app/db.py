@@ -21,7 +21,7 @@ def get_engine():
         # Fallback a SQLite
         try:
             os.makedirs("../data", exist_ok=True)
-            return create_engine("sqlite:///../data/resultados.db")
+        return create_engine("sqlite:///../data/resultados.db")
         except Exception as e:
             print(f"Error creando engine SQLite: {e}")
             return create_engine("sqlite:///resultados.db")
@@ -37,19 +37,19 @@ resultados = Table("resultados", metadata,
 )
 
 try:
-    metadata.create_all(engine)
+metadata.create_all(engine)
 except Exception as e:
     print(f"Error creando tablas: {e}")
 
 def guardar_resultado(sujeto, simulacion, data):
     try:
-        with engine.connect() as conn:
-            conn.execute(resultados.insert().values(
-                id=f"{sujeto}_{simulacion}",
-                sujeto=sujeto,
-                simulacion=simulacion,
-                data=data
-            ))
+    with engine.connect() as conn:
+        conn.execute(resultados.insert().values(
+            id=f"{sujeto}_{simulacion}",
+            sujeto=sujeto,
+            simulacion=simulacion,
+            data=data
+        ))
             conn.commit()
         return True
     except Exception as e:
